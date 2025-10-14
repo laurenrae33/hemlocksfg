@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products | Hemlocks Farm & Garden</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        /* Custom Styles for better visual appeal, leveraging Tailwind classes */
+        .product-card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4ade80;
+            color: #166534;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
+        .message-box.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <div class="site-title text-3xl font-bold mb-4 sm:mb-0">Hemlocks Farm & Garden</div>
+            <nav>
+                <ul class="flex flex-wrap justify-center sm:justify-end gap-x-6 gap-y-2 text-lg">
+                    <li><a href="index.html" class="hover:text-green-400 transition-colors">Home</a></li>
+                    <li><a href="products.html" class="hover:text-green-400 transition-colors">Products</a></li>
+                    <li><a href="delivery.html" class="hover:text-green-400 transition-colors">Delivery</a></li>
+                    <li><a href="contact.html" class="hover:text-green-400 transition-colors">Contact Us</a></li>
+                    <li><a href="cart.html" class="hover:text-green-400 transition-colors">Cart 🛒 <span id="cart-count">0</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">All Products</h1>
+
+        <!-- Search Bar -->
+        <div class="mb-8 flex justify-center">
+            <input id="search-input" type="search" placeholder="Search products..." aria-label="Search"
+                   class="w-full max-w-lg p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all shadow-sm">
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Product cards will be dynamically inserted here -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" class="hidden text-center text-xl text-gray-500 mt-12">
+            No products found matching your search.
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>&copy; 2025 Hemlocks Farm & Garden. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Message Box for notifications -->
+    <div id="message-box" class="message-box"></div>
+
+    <script>
+        // Combined product data from all sources
+        const PRODUCTS = [
+            // Original products from previous page
+            {id:'h1', category:'horse', title:'Pelleted Horse Feed 50lb', price:24.99, img:'https://placehold.co/400x300/e2e8f0/000000?text=Horse+Feed', desc:'High-quality pelleted feed for horses.'},
+            {id:'l1', category:'livestock', title:'All-Stock 50lb', price:18.50, img:'https://placehold.co/400x300/e2e8f0/000000?text=All-Stock', desc:'A complete feed for all types of livestock.'},
+            {id:'g1', category:'home-garden', title:'Organic Potting Soil 20lb', price:12.99, img:'https://placehold.co/400x300/e2e8f0/000000?text=Potting+Soil', desc:'Premium organic soil for your garden and houseplants.'},
+            {id:'b1', category:'wild-bird-deer', title:'Wild Bird Seed Mix 10lb', price:9.99, img:'https://placehold.co/400x300/e2e8f0/000000?text=Bird+Seed', desc:'A hearty mix of seeds to attract local birds.'},
+            {id:'h2', category:'horse', title:'Alfalfa Hay Bale', price:20.00, img:'https://placehold.co/400x300/e2e8f0/000000?text=Alfalfa+Hay', desc:'Nutrient-rich alfalfa hay for horses.'},
+            {id:'l2', category:'livestock', title:'Poultry Layer Crumbles', price:15.75, img:'https://placehold.co/400x300/e2e8f0/000000?text=Poultry+Feed', desc:'Nutritionally complete crumbles for laying hens.'},
+            {id:'g2', category:'home-garden', title:'Garden Rake', price:25.50, img:'https://placehold.co/400x300/e2e8f0/000000?text=Garden+Rake', desc:'Durable steel rake with a comfortable handle.'},
+            {id:'b2', category:'wild-bird-deer', title:'Deer Mineral Block', price:14.25, img:'https://placehold.co/400x300/e2e8f0/000000?text=Mineral+Block', desc:'Essential minerals to support deer health.'},
+            {id:'f1', category:'food', title:'Organic Corn 25lb', price:10.50, img:'https://placehold.co/400x300/e2e8f0/000000?text=Organic+Corn', desc:'Whole organic corn for various uses.'},
+            {id:'f2', category:'food', title:'Apple Chips', price:4.75, img:'https://placehold.co/400x300/e2e8f0/000000?text=Apple+Chips', desc:'Delicious and healthy dehydrated apple chips.'},
+
+            // Products from the stock list with cleaned data
+            {id: 'stock-1', category: 'Grain', title: 'Dried Molasses 50 Lbs', price: 32.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Dried+Molasses', desc: 'Product details coming soon.'},
+            {id: 'stock-2', category: 'other', title: 'Ball Pint And Half Jars Wide Mouth With', price: 15.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Jars', desc: 'Product details coming soon.'},
+            {id: 'stock-3', category: 'other', title: 'Snap Cut Pruning Saw', price: 31.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Pruning+Saw', desc: 'Product details coming soon.'},
+            {id: 'stock-4', category: 'other', title: 'P-Line Tarp 12x20', price: 15.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Tarp', desc: 'Product details coming soon.'},
+            {id: 'stock-5', category: 'other', title: 'Ice Chaser Floating Stock Tank De-Icer', price: 34.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=De-Icer', desc: 'Product details coming soon.'},
+            {id: 'stock-6', category: 'other', title: 'Dare Equi-Rope 1/4 Braid', price: 75.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Equi-Rope', desc: 'Product details coming soon.'},
+            {id: 'stock-7', category: 'other', title: 'Propane Tank Exchange', price: 24.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Propane+Tank', desc: 'Product details coming soon.'},
+            {id: 'stock-8', category: 'House/Home', title: 'ZON BROIL KING BASTIN BRUSH AND BOWL', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Brush+and+Bowl', desc: 'Product details coming soon.'},
+            {id: 'stock-9', category: 'Bedding', title: 'Cob Bedding', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Cob+Bedding', desc: 'Product details coming soon.'},
+            {id: 'stock-10', category: 'other', title: 'Crystal Blue Lake And Pond Colorant', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Pond+Colorant', desc: 'Product details coming soon.'},
+            {id: 'stock-11', category: 'other', title: 'Montreal Steak Seasoning 24 Oz', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Steak+Seasoning', desc: 'Product details coming soon.'},
+            {id: 'stock-12', category: 'other', title: 'AniFlex Complete 2.5 Lbs', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=AniFlex', desc: 'Product details coming soon.'},
+            {id: 'stock-13', category: 'other', title: 'All Purpose Grooming Mitt', price: 26.81, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Grooming+Mitt', desc: 'Product details coming soon.'},
+            {id: 'stock-14', category: 'other', title: 'Bonide Mouse Magic 6 Oz', price: 26.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Mouse+Magic', desc: 'Product details coming soon.'},
+            {id: 'stock-15', category: 'other', title: 'Pig Ears', price: 1.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Pig+Ears', desc: 'Product details coming soon.'},
+            {id: 'stock-16', category: 'Beef/Dairy', title: 'White Salt Block 4 Lbs', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Salt+Block', desc: 'Product details coming soon.'},
+            {id: 'stock-17', category: 'House/Home', title: 'Window Feeder Hanger', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Feeder+Hanger', desc: 'Product details coming soon.'},
+            {id: 'stock-18', category: 'other', title: 'Jerky Cure And Seasoning Variety Pack', price: 13.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Jerky+Cure', desc: 'Product details coming soon.'},
+            {id: 'stock-19', category: 'other', title: 'Peak 2 Cycle Engine Oil 8 Oz', price: 1.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Engine+Oil', desc: 'Product details coming soon.'},
+            {id: 'stock-20', category: 'other', title: '48" Handle Manure Fork Bent', price: 14.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Manure+Fork', desc: 'Product details coming soon.'},
+            {id: 'stock-21', category: 'Fencing', title: '1 1/4 Fence Staples', price: 3.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Fence+Staples', desc: 'Product details coming soon.'},
+            {id: 'stock-22', category: 'Deer', title: 'Winter Greens', price: 41.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Winter+Greens', desc: 'Product details coming soon.'},
+            {id: 'stock-23', category: 'House/Home', title: 'Chime', price: 29.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Chime', desc: 'Product details coming soon.'},
+            {id: 'stock-24', category: 'other', title: 'Bloom 3 Prong Garden Tool', price: 4.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Garden+Tool', desc: 'Product details coming soon.'},
+            {id: 'stock-25', category: 'Equine', title: 'ProElite Calorie Wise', price: 22.49, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Calorie+Wise', desc: 'Product details coming soon.'},
+            {id: 'stock-26', category: 'other', title: 'Boss Jersey Large', price: 1.59, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Boss+Jersey', desc: 'Product details coming soon.'},
+            {id: 'stock-27', category: 'Deer', title: 'Buckwheat 50 Lbs', price: 62.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Buckwheat', desc: 'Product details coming soon.'},
+            {id: 'stock-28', category: 'other', title: 'Tangle Wrangler', price: 4.19, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Tangle+Wrangler', desc: 'Product details coming soon.'},
+            {id: 'stock-29', category: 'other', title: 'Rubber Bands White', price: 2.09, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Rubber+Bands', desc: 'Product details coming soon.'},
+            {id: 'stock-30', category: 'other', title: 'Truper Axe', price: 29.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Truper+Axe', desc: 'Product details coming soon.'},
+            {id: 'stock-31', category: 'Nursery', title: 'Coast of Maine seed starter', price: 11.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Seed+Starter', desc: 'Product details coming soon.'},
+            {id: 'stock-32', category: 'other', title: 'Coast of Maine Fishbone Meal', price: 21.58, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Fishbone+Meal', desc: 'Product details coming soon.'},
+            {id: 'stock-33', category: 'Food', title: 'Onion Powder', price: 2.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Onion+Powder', desc: 'Product details coming soon.'},
+            {id: 'stock-34', category: 'Food', title: 'Coriander', price: 9.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Coriander', desc: 'Product details coming soon.'},
+            {id: 'stock-35', category: 'Fertilizer', title: 'Top Soil 40lb', price: 5.79, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Top+Soil', desc: 'Product details coming soon.'},
+            {id: 'stock-36', category: 'Lawn/Garden', title: 'Rm18 weed killer QT', price: 18.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Weed+Killer', desc: 'Product details coming soon.'},
+            {id: 'stock-37', category: 'Footwear/Clothing', title: 'Steadyeti High', price: 189.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Steadyeti+High', desc: 'Product details coming soon.'},
+            {id: 'stock-38', category: 'other', title: 'Bucket Hook Nickel Plated', price: 1.28, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Bucket+Hook', desc: 'Product details coming soon.'},
+            {id: 'stock-39', category: 'other', title: 'Squirrel Buster Plus', price: 69.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Squirrel+Buster', desc: 'Product details coming soon.'},
+            {id: 'stock-40', category: 'other', title: 'Ball Pint Wide Mouth Jars With Lids And', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Wide+Mouth+Jars', desc: 'Product details coming soon.'},
+            {id: 'stock-41', category: 'House/Home', title: 'Midnight Blue Chime', price: 34.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Midnight+Blue+Chime', desc: 'Product details coming soon.'},
+            {id: 'stock-42', category: 'Fencing', title: 'Welded Wire 14 Ga 4x2x36x50', price: 29.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Welded+Wire', desc: 'Product details coming soon.'},
+            {id: 'stock-43', category: 'other', title: 'Absorbine Ultra Shield EX 1 Gallon', price: 72.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Absorbine', desc: 'Product details coming soon.'},
+            {id: 'stock-44', category: 'other', title: '6 Blue Leash Coastal Pet', price: 13.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Blue+Leash', desc: 'Product details coming soon.'},
+            {id: 'stock-45', category: 'other', title: 'Bonide Eight Insect Control Garden Dust', price: 7.39, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Garden+Dust', desc: 'Product details coming soon.'},
+            {id: 'stock-46', category: 'Poultry', title: 'Diatomacious Earth Foss. Shell Flour 40', price: 25.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Diatomacious+Earth', desc: 'Product details coming soon.'},
+            {id: 'stock-47', category: 'Cat/Dog', title: 'Odor Destroyer', price: 11.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Odor+Destroyer', desc: 'Product details coming soon.'},
+            {id: 'stock-48', category: 'Bird', title: 'Harmony bird seed 20lb', price: 25.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Bird+Seed', desc: 'Product details coming soon.'},
+            {id: 'stock-49', category: 'other', title: 'Via Calm 2 lbs', price: 19.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Via+Calm', desc: 'Product details coming soon.'},
+            {id: 'stock-50', category: 'Food', title: 'Cheerwine', price: 6.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Cheerwine', desc: 'Product details coming soon.'},
+            {id: 'stock-51', category: 'other', title: 'Assorted Fruit Slices', price: 4.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Fruit+Slices', desc: 'Product details coming soon.'},
+            {id: 'stock-52', category: 'Bird feeders', title: 'Green Petite Feeder', price: 13.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Petite+Feeder', desc: 'Product details coming soon.'},
+            {id: 'stock-53', category: 'Cat/Dog', title: 'Pro-Form Dog Food', price: 56.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Dog+Food', desc: 'Product details coming soon.'},
+            {id: 'stock-54', category: 'Fencing', title: 'Welded Wire 2x4x72x50 14 Guage', price: 92.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Welded+Wire', desc: 'Product details coming soon.'},
+            {id: 'stock-55', category: 'other', title: 'Tomcat Bait Chunx 4 Lbs', price: 27.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Tomcat+Bait', desc: 'Product details coming soon.'},
+            {id: 'stock-56', category: 'SEEDS', title: 'White Onion per lb', price: 2.79, img: 'https://placehold.co/400x300/e2e8f0/000000?text=White+Onion', desc: 'Product details coming soon.'},
+            {id: 'stock-57', category: 'other', title: 'Plastic Wye', price: 0.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Plastic+Wye', desc: 'Product details coming soon.'},
+            {id: 'stock-58', category: 'other', title: 'Burlap roll', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Burlap+Roll', desc: 'Product details coming soon.'},
+            {id: 'stock-59', category: 'other', title: 'Revenge Rodent Smoke Bomb', price: 7.79, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Smoke+Bomb', desc: 'Product details coming soon.'},
+            {id: 'stock-60', category: 'Equine', title: 'Calorie Plus 8, bucket', price: 32.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Calorie+Plus+Bucket', desc: 'Product details coming soon.'},
+            {id: 'stock-61', category: 'Fencing', title: 'Sheep/Goat Fence 4x4 12.5 Ga 48"x330 Ft', price: 285.00, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Sheep/Goat+Fence', desc: 'Product details coming soon.'},
+            {id: 'stock-62', category: 'other', title: 'Little Giant Weather Proof 15 Gallon Tub', price: 24.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=15+Gallon+Tub', desc: 'Product details coming soon.'},
+            {id: 'stock-63', category: 'other', title: 'Swat Original', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Swat+Original', desc: 'Product details coming soon.'},
+            {id: 'stock-64', category: 'other', title: 'Bonide Measuring Cup', price: 1.29, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Measuring+Cup', desc: 'Product details coming soon.'},
+            {id: 'stock-65', category: 'Deer', title: 'Winter Rye 50', price: 32.00, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Winter+Rye', desc: 'Product details coming soon.'},
+            {id: 'stock-66', category: 'other', title: 'Ground Coriander', price: 5.25, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Ground+Coriander', desc: 'Product details coming soon.'},
+            {id: 'stock-67', category: 'other', title: 'Bonide Colorado Potato Beetle Beater 16', price: 18.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Beetle+Beater', desc: 'Product details coming soon.'},
+            {id: 'stock-68', category: 'Beef/Dairy', title: 'Dairy Mineral 2-1', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Dairy+Mineral', desc: 'Product details coming soon.'},
+            {id: 'stock-69', category: 'Equine', title: 'Poulin ETec Senior Low Carb', price: 26.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Poulin+ETec', desc: 'Product details coming soon.'},
+            {id: 'stock-70', category: 'other', title: 'Marking Flags', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Marking+Flags', desc: 'Product details coming soon.'},
+            {id: 'stock-71', category: 'other', title: 'Hinder Deer And Rabbit Repellant', price: 49.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Hinder+Repellant', desc: 'Product details coming soon.'},
+            {id: 'stock-72', category: 'other', title: 'Ball Regular Mouth Lids 12 Pk With Bands', price: 9.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Ball+Lids', desc: 'Product details coming soon.'},
+            {id: 'stock-73', category: 'Lawn/Garden', title: 'Alfalfa Per Lb (Forage Queen)', price: 7.25, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Alfalfa', desc: 'Product details coming soon.'},
+            {id: 'stock-74', category: 'other', title: 'French Roasted Peanuts', price: 5.00, img: 'https://placehold.co/400x300/e2e8f0/000000?text=French+Roasted+Peanuts', desc: 'Product details coming soon.'},
+            {id: 'stock-75', category: 'Footwear/Clothing', title: 'Artic Storm Steel Toe Boot', price: 159.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Steel+Toe+Boot', desc: 'Product details coming soon.'},
+            {id: 'stock-76', category: 'Food', title: 'Parsley Flakes', price: 9.79, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Parsley+Flakes', desc: 'Product details coming soon.'},
+            {id: 'stock-77', category: 'Lawn/Garden', title: 'Burnout Rtu Gallon', price: 29.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Burnout+Gallon', desc: 'Product details coming soon.'},
+            {id: 'stock-78', category: 'other', title: 'Bite Blaster', price: 3.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Bite+Blaster', desc: 'Product details coming soon.'},
+            {id: 'stock-79', category: 'other', title: 'Fatwood 15lb, Box', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Fatwood+Box', desc: 'Product details coming soon.'},
+            {id: 'stock-80', category: 'Swine', title: 'Pig Starter/Grower', price: 21.45, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Pig+Feed', desc: 'Product details coming soon.'},
+            {id: 'stock-81', category: 'other', title: 'Berkebile Pen Lube', price: 2.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Pen+Lube', desc: 'Product details coming soon.'},
+            {id: 'stock-82', category: 'other', title: 'Bonide Weed Beater 32 Oz', price: 13.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Weed+Beater', desc: 'Product details coming soon.'},
+            {id: 'stock-83', category: 'Fencing', title: '5 Ft Steel Tee Post', price: 8.25, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Tee+Post', desc: 'Product details coming soon.'},
+            {id: 'stock-84', category: 'other', title: 'LEM Meat Sticks', price: 6.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Meat+Sticks', desc: 'Product details coming soon.'},
+            {id: 'stock-85', category: 'other', title: 'LEM Original Meat stick', price: 6.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Meat+Sticks', desc: 'Product details coming soon.'},
+            {id: 'stock-86', category: 'Bird', title: 'Suet plus jumbo pack', price: 37.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Suet+Pack', desc: 'Product details coming soon.'},
+            {id: 'stock-87', category: 'other', title: 'Weaver Screw Eye 3"', price: 0.95, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Screw+Eye', desc: 'Product details coming soon.'},
+            {id: 'stock-88', category: 'other', title: 'Zareba 1 Amp/250 Volt Fuse', price: 1.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Fuse', desc: 'Product details coming soon.'},
+            {id: 'stock-89', category: 'House/Home', title: 'Weber Grill Brush', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Grill+Brush', desc: 'Product details coming soon.'},
+            {id: 'stock-90', category: 'other', title: 'Horseshave Razor', price: 1.50, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Razor', desc: 'Product details coming soon.'},
+            {id: 'stock-91', category: 'Grain', title: 'Hi Pro Soybean Meal 48% 50 Lbs', price: 22.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Soybean+Meal', desc: 'Product details coming soon.'},
+            {id: 'stock-92', category: 'other', title: 'Ruffles Pro Contractor Bags Black', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Contractor+Bags', desc: 'Product details coming soon.'},
+            {id: 'stock-93', category: 'other', title: '36" Oval Post Maul Handle', price: 43.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Maul+Handle', desc: 'Product details coming soon.'},
+            {id: 'stock-94', category: 'other', title: 'Duraflame Lighter', price: 4.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Duraflame+Lighter', desc: 'Product details coming soon.'},
+            {id: 'stock-95', category: 'other', title: 'Womens Top Grain Cowhide Small Bellingha', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Cowhide', desc: 'Product details coming soon.'},
+            {id: 'stock-96', category: 'other', title: 'Rapiclip Wood Plant Labels', price: 2.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Plant+Labels', desc: 'Product details coming soon.'},
+            {id: 'stock-97', category: 'other', title: 'Truper Garden Rake Small', price: 7.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Garden+Rake+Small', desc: 'Product details coming soon.'},
+            {id: 'stock-98', category: 'Lawn/Garden', title: 'chapin hose nozzle', price: 19.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Hose+Nozzle', desc: 'Product details coming soon.'},
+            {id: 'stock-99', category: 'other', title: '12" Extention Hook', price: 4.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Extension+Hook', desc: 'Product details coming soon.'},
+            {id: 'stock-100', category: 'other', title: 'Grainola Treat', price: 2.89, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Grainola+Treat', desc: 'Product details coming soon.'},
+            {id: 'stock-101', category: 'Cat/Dog', title: 'Pure Cat food', price: 21.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Cat+Food', desc: 'Product details coming soon.'},
+            {id: 'stock-102', category: 'Pest Control', title: 'Glue board 2 pack', price: 8.59, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Glue+Board', desc: 'Product details coming soon.'},
+            {id: 'stock-103', category: 'Bird', title: 'Lyric Woodpeckers Pick', price: 51.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Woodpeckers+Pick', desc: 'Product details coming soon.'},
+            {id: 'stock-104', category: 'other', title: 'Garrant Red Snow Shovel', price: 17.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Snow+Shovel', desc: 'Product details coming soon.'},
+            {id: 'stock-105', category: 'other', title: 'Forti Diet Prohealth Chinchilla Honey Tr', price: 4.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Chinchilla+Treats', desc: 'Product details coming soon.'},
+            {id: 'stock-106', category: 'other', title: 'Grip Fit Grooming Brush Stiff With Hand', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Grooming+Brush', desc: 'Product details coming soon.'},
+            {id: 'stock-107', category: 'Lawn/Garden', title: 'RM 18 weed killer half gal', price: 25.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Weed+Killer', desc: 'Product details coming soon.'},
+            {id: 'stock-108', category: 'Small animal', title: 'Rabbit Waterer', price: 39.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Rabbit+Waterer', desc: 'Product details coming soon.'},
+            {id: 'stock-109', category: 'other', title: 'Mane N Tail Conditioner', price: 8.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Conditioner', desc: 'Product details coming soon.'},
+            {id: 'stock-110', category: 'House/Home', title: 'Five Gallon Gas Can', price: 23.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Gas+Can', desc: 'Product details coming soon.'},
+            {id: 'stock-111', category: 'Goat/Sheep', title: 'Goat Mineral', price: 52.96, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Goat+Mineral', desc: 'Product details coming soon.'},
+            {id: 'stock-112', category: 'other', title: 'Premium Aw 32 Hydraulic Fluid', price: 56.99, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Hydraulic+Fluid', desc: 'Product details coming soon.'},
+            {id: 'stock-113', category: 'other', title: 'Sweet Pdz 40 Lbs', price: null, img: 'https://placehold.co/400x300/e2e8f0/000000?text=Sweet+Pdz', desc: 'Product details coming soon.'},
+        ];
+
+        // Function to display a temporary message
+        function showMessage(text) {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = text;
+            msgBox.classList.add('show');
+            setTimeout(() => {
+                msgBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Function to add a product to the cart
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product || product.price === null) {
+                showMessage("This item is not available for purchase.");
+                return;
+            }
+            const qtyInput = document.getElementById(`qty-${product.id}`);
+            const qty = qtyInput ? parseInt(qtyInput.value, 10) : 1;
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += qty;
+            } else {
+                cart.push({ ...product, quantity: qty });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showMessage(`${product.title} added to cart!`);
+        }
+
+        // Function to update the cart count display
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').innerText = count;
+        }
+
+        // Function to render all products on the page
+        function renderAllProducts() {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear existing content
+
+            PRODUCTS.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card bg-white p-4 rounded-lg shadow-md flex flex-col items-center text-center';
+                const priceDisplay = product.price !== null ? `$${product.price.toFixed(2)}` : 'Price not available';
+                const buttonHtml = product.price !== null ? `
+                    <div class="flex items-center mb-4">
+                        <label for="qty-${product.id}" class="mr-2">Qty:</label>
+                        <input type="number" min="1" value="1" id="qty-${product.id}" class="w-20 text-center border rounded-md p-1 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <button onclick="addToCart('${product.id}')" class="w-full bg-green-500 text-white py-2 px-4 rounded-full hover:bg-green-600 transition-colors duration-200">
+                        Add to Cart
+                    </button>
+                ` : `
+                    <button class="w-full bg-gray-400 text-gray-800 py-2 px-4 rounded-full cursor-not-allowed">
+                        Out of Stock
+                    </button>
+                `;
+
+                card.innerHTML = `
+                    <img src="${product.img}" alt="${product.title}" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">${product.title}</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">${product.desc}</p>
+                    <p class="text-2xl font-bold text-green-600 mb-4">${priceDisplay}</p>
+                    ${buttonHtml}
+                `;
+                productList.appendChild(card);
+            });
+        }
+        
+        // Function to filter products based on search input
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            const productList = document.getElementById('product-list');
+            const noResults = document.getElementById('no-results');
+
+            searchInput.addEventListener('input', () => {
+                const filterText = searchInput.value.toLowerCase();
+                const productCards = productList.querySelectorAll('.product-card');
+                let visibleCount = 0;
+
+                productCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const desc = card.querySelector('p').textContent.toLowerCase();
+                    if (title.includes(filterText) || desc.includes(filterText)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        }
+
+        // Initialize the page on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAllProducts();
+            updateCartCount();
+            setupSearch();
+        });
+    </script>
+</body>
+</html>

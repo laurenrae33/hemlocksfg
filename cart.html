@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Cart — Hemlocks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- PayPal SDK with a placeholder client-id. You MUST replace this with your own. -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AaWpUpVJSHN141dkxbaXnvBrEL8d0d9Crj88ZQy1Gv97d_wb-5nwaeXt2QYaNAuXRQEvRJf_ia9JV4WI&currency=USD"></script>
+
+    <!-- Combined and Inlined Styles from all original files -->
+    <style>
+        /* General body and container styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Header and Navigation Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .site-title {
+            font-size: 2.8em;
+            font-weight: 900;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background-color: #555;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: normal; 
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #00bcd4;
+        }
+
+        /* Cart Page Specific Styles */
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-controls input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+        }
+
+        .cart-summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .cart-summary p {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .cart-summary .grand-total {
+            font-size: 1.5em;
+            color: #000;
+        }
+        
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #6a9c72;
+            color: #fff;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        
+        .checkout-button:hover {
+            background-color: #4a7550;
+        }
+
+        /* Modal for messages */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-button {
+            background-color: #6a9c72;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .modal-button:hover {
+            background-color: #4a7550;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Modal for messages -->
+<div id="custom-modal" class="modal">
+    <div class="modal-content">
+        <p id="modal-message"></p>
+        <button class="modal-button" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<header>
+    <div class="site-title">Hemlocks Farm & Garden</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="horse.html">Horse</a></li>
+            <li><a href="livestock.html">Livestock</a></li>
+            <li><a href="home-garden.html">Home/Garden</a></li>
+            <li><a href="wild-bird-deer.html">Wild Bird/Deer</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="cart.html" class="active">Cart 🛒 <span id="cart-count">0</span></a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container my-4">
+    <h1 class="text-center">Your Shopping Cart</h1>
+    <div id="cart-items"></div>
+    <div class="cart-summary mt-5">
+        <div>
+            <p>Subtotal:</p>
+            <p id="subtotal">$0.00</p>
+        </div>
+        <div>
+            <p>Delivery Fee:</p>
+            <p id="delivery-fee">$45.00</p>
+        </div>
+        <div>
+            <p>Credit Card Fee:</p>
+            <p id="credit-fee">$0.00</p>
+        </div>
+        <div class="grand-total">
+            <p>Grand Total:</p>
+            <p id="grand">$0.00</p>
+        </div>
+    </div>
+    
+    <div id="paypal-button-container" class="mt-4"></div>
+</div>
+
+<script>
+    // --- Data and State Management ---
+    // Combined product data to power the cart functionality
+    const PRODUCTS = [
+        { id: 'h1', category: 'horse', title: 'Pelleted Horse Feed 50lb', price: 24.99, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Pelleted+Feed' },
+        { id: 'h2', category: 'horse', title: 'Horse Supplements', price: 35.50, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Horse+Supplements' },
+        { id: 'l1', category: 'livestock', title: 'Chicken Feed 25lb', price: 18.99, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Chicken+Feed' },
+        { id: 'l2', category: 'livestock', title: 'Goat Mineral Mix', price: 22.50, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Goat+Mineral+Mix' },
+        { id: 'hg1', category: 'home-garden', title: 'Pruning Shears', price: 12.99, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Pruning+Shears' },
+        { id: 'hg2', category: 'home-garden', title: 'Tomato Cages (Set of 3)', price: 9.75, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Tomato+Cages' },
+        { id: 'wbd1', category: 'wild-bird-deer', title: 'Wild Bird Seed Mix 10lb', price: 15.00, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Bird+Seed' },
+        { id: 'wbd2', category: 'wild-bird-deer', title: 'Deer Corn 40lb', price: 10.50, img: 'https://placehold.co/300x300/e0e0e0/000000?text=Deer+Corn' }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // --- Modal Functions (Replaces alert()) ---
+    function showModal(message) {
+        document.getElementById('modal-message').innerText = message;
+        document.getElementById('custom-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('custom-modal').style.display = 'none';
+    }
+
+    // --- Cart Rendering and Management ---
+    function renderCart() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        if (!cartItemsContainer) return;
+        cartItemsContainer.innerHTML = '';
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `<p style="text-align: center; color: #888;">Your cart is empty.</p>`;
+            document.getElementById('paypal-button-container').style.display = 'none';
+        } else {
+            document.getElementById('paypal-button-container').style.display = 'block';
+            cart.forEach(item => {
+                const cartItemHtml = `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.title}"/>
+                        <div class="cart-item-details">
+                            <h4>${item.title}</h4>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-item-controls">
+                            <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity('${item.id}', this.value)"/>
+                            <button onclick="removeFromCart('${item.id}')" class="btn btn-sm btn-danger">Remove</button>
+                        </div>
+                        <p style="font-weight: bold;">$${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                `;
+                cartItemsContainer.innerHTML += cartItemHtml;
+            });
+        }
+        updateCartTotals();
+        renderPayPalButtons();
+    }
+    
+    function updateCartItemQuantity(productId, newQuantity) {
+        const item = cart.find(i => i.id === productId);
+        if (item) {
+            item.quantity = parseInt(newQuantity, 10);
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                renderCart();
+            }
+        }
+    }
+
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        renderCart();
+        showModal('Item removed from cart!');
+    }
+
+    function updateCartCount() {
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+            cartCountElement.innerText = count;
+        }
+    }
+    
+    function calculateTotals() {
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const deliveryFee = 45.00;
+        const creditCardFee = (subtotal + deliveryFee) * 0.03;
+        const grandTotal = subtotal + deliveryFee + creditCardFee;
+        return { subtotal, deliveryFee, creditCardFee, grandTotal };
+    }
+
+    function updateCartTotals() {
+        const totals = calculateTotals();
+        document.getElementById("subtotal").innerText = `$${totals.subtotal.toFixed(2)}`;
+        document.getElementById("delivery-fee").innerText = `$${totals.deliveryFee.toFixed(2)}`;
+        document.getElementById("credit-fee").innerText = `$${totals.creditCardFee.toFixed(2)}`;
+        document.getElementById("grand").innerText = `$${totals.grandTotal.toFixed(2)}`;
+    }
+    
+    // --- PayPal Integration ---
+    function renderPayPalButtons() {
+        const totals = calculateTotals();
+        const grandTotal = totals.grandTotal.toFixed(2);
+
+        // Render the PayPal button only if the cart is not empty
+        if (cart.length > 0) {
+             paypal.Buttons({
+                // Sets up the transaction when a PayPal button is clicked
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: grandTotal
+                            }
+                        }]
+                    });
+                },
+                // Finalize the transaction after the user approves the payment
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Show a confirmation modal
+                        showModal('Transaction completed by ' + details.payer.name.given_name + '!');
+                        
+                        // Clear the cart
+                        localStorage.removeItem('cart');
+                        cart = [];
+                        renderCart();
+                    });
+                }
+            }).render('#paypal-button-container');
+        } else {
+            // Hide the PayPal button if the cart is empty
+            const paypalContainer = document.getElementById('paypal-button-container');
+            if(paypalContainer) {
+                paypalContainer.innerHTML = ''; // Clear any existing buttons
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartCount();
+        renderCart();
+    });
+</script>
+
+</body>
+</html>

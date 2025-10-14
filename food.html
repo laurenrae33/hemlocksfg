@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hemlocks — Food</title>
+<link rel="stylesheet" href="/assets/css/styles.css"/></head>
+<body data-category="food">
+
+<header>
+  <div class="site-title">Hemlocks Farm & Garden</div>
+  <nav>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/horse.html">Horse</a></li>
+      <li><a href="/livestock.html">Livestock</a></li>
+      <li><a href="/home-garden.html">Home/Garden</a></li>
+      <li><a href="/wild-bird-deer.html">Wild Bird/Deer</a></li>
+      <li><a href="/food.html">Food</a></li>
+      <li><a href="/delivery.html">Delivery</a></li>
+      <li><a href="/contact.html">Contact Us</a></li>
+      <li><a href="/cart.html">Cart 🛒</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <input id="search" type="search" placeholder="Search products..." aria-label="Search" />
+  <div id="grid" class="grid"></div>
+</div>
+<div id="cart-icon" onclick="location.href='/cart.html'">🛒 <b id="cart-count">0</b></div>
+<script type="module" src="/assets/js/main.js"></script>
+<script>import('/assets/js/cart.js').then(m=>m.updateCartCount());</script>
+<div class="footer">© Hemlocks Farm & Garden 2025</div>
+</body></html>

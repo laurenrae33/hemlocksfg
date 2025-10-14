@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hemlocks — Horse</title>
+<link rel="stylesheet" href="/assets/css/styles.css"/>
+<link href="assets/css/stylesheetactal.css" rel="stylesheet" type="text/css">
+<style>
+/* --- General Styles --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* --- Header & Navigation (Updated to meet requirements) --- */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0; /* Adjusted padding to allow full-width elements */
+    text-align: center;
+}
+
+.site-title {
+    font-size: 2.8em;
+    font-weight: 900;
+    margin: 0 auto 20px auto; /* Centered and added bottom margin */
+    display: block; /* Ensures centering works correctly */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: #555;
+    padding: 10px 20px;
+    box-sizing: border-box; /* Ensures padding is included in the total width */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.bottom-header {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* --- Product Grid Styling --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: auto;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-desc {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2e7d32;
+    margin: 8px 0;
+}
+
+/* --- Add to Cart Button --- */
+.product-card button {
+    background: #ffffff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.product-card button:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+#no-results {
+    display: none;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #c00;
+}
+</style>
+</head>
+<body data-category="horse">
+<header>
+    <div class="site-title">Hemlocks Farm & Garden</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="horse.html" class="active">Horse</a></li>
+            <li><a href="livestock.html">Livestock</a></li>
+            <li><a href="home-garden.html">Home/Garden</a></li>
+            <li><a href="wild-bird-deer.html">Wild Bird/Deer</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="bottom-header">
+        <input id="search" type="search" placeholder="Search horse products..." aria-label="Search" />
+        <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
+    </div>
+</header>
+<body>
+<div class="product-grid">
+
+    <div class="product-card">
+        <img src="assets/img/Unknown.jpeg" alt="Alfalfa Pellets" />
+        <div class="product-title">Alfalfa Pellets</div>
+        <div class="product-desc">
+            Pellet 17.0 Protein 1.0 Fat 25.0 Fiber 0.3 lbs/cup.
+            Alfalfa Pellets are intended to be used as a supplement along with your horse's daily feed ration.
+        </div>
+        <div class="product-price">$26.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/images.jpeg" alt="Alfalfa Cubes" />
+        <div class="product-title">Alfalfa Cubes</div>
+        <div class="product-desc">Cube 15.0 Protein 1.8 Fat 32.0 Fiber A quality, all natural product made especially for the equine contender.</div>
+        <div class="product-price">$25.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/2300610.jpg" alt="Beet Pulp Pellets" />
+        <div class="product-title">Beet Pulp Pellets</div>
+        <div class="product-desc">Beet Pulp is the vegetable matter, which remains after sugar is extracted from sliced sugar beets. This vegetable matter is then made into pellets to improve its nutritional value and handling characteristics. It is high in fiber and unique in that its fiber is extremely digestible</div>
+        <div class="product-price">$35.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/plainbeetpulppic.jpg" alt="Beet Pulp Shreds Plain" />
+        <div class="product-title">Beet Pulp Shreds Plain</div>
+        <div class="product-desc">Beet pulp shreds are fibrous flakes from sugar beets after the sugar extraction process. It is dried to reduce the water content to approximately 9%. Sugar beet pulp fiber is low-cost, highly digestible, and an extremely palatable feed in a form that is considered less dusty than hay. Molasses can be added to shreds, called molassed shreds, to make it sweeter and more desirable to finicky, active, or older horses, and helps them keep their weight at an optimum level.</div>
+        <div class="product-price">$21.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/molbeetpulppic.jpg" alt="Beet Pulp Shreds with Molasses&nbsp; &nbsp;" />
+        <div class="product-title">Beet Pulp Shreds with Molasses&nbsp; &nbsp;</div>
+        <div class="product-desc">Beet pulp shreds are fibrous flakes from sugar beets after the sugar extraction process. It is dried to reduce the water content to approximately 9%. Sugar beet pulp fiber is low-cost, highly digestible, and an extremely palatable feed in a form that is considered less dusty than hay. Molasses can be added to shreds, called molassed shreds, to make it sweeter and more desirable to finicky, active, or older horses, and helps them keep their weight at an optimum level. 30 lb bag</div>
+        <div class="product-price">$26.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/timpell website.png" alt="Timothy Pellets" />
+        <div class="product-title">Timothy Pellets</div>
+        <div class="product-desc">7.0 Protein 1.3 Fat 35.0 Fiber Timothy pellets are produced from Canadian timothy hay grown in Alberta, Canada. The timothy hay is cut and sun dried in field.</div>
+        <div class="product-price">$27.01</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1601392.jpg" alt="Timothy Cubes" />
+        <div class="product-title">Timothy Cubes</div>
+        <div class="product-desc">A consistent, convenient, low in non-structural-carbohydrates feed. Made with our very best Premium grade Timothy hay, Beet Pulp (no molasses), and specific minerals and amino acids. Specifically formulated for horses with Equine Cushing's Disease, Insulin Resistance, and other related conditions where a nutritious diet low in non-structural carbohydrates is recommended or essential. Crude Protein: (Min) 9% Crude Fiber: (Max) 30% Crude Fat: (Min) 1.8% Moisture: (Max) 12% INGREDIENTS: Premium Timothy; Beet Pulp (no molasses); Hydrated Lime; Sodium Phosphate; Magnesium Oxide; Copper Sulphate; Zinc Sulphate; Manganese Sulphate; Selenium; Iodine. RECOMMENDED FOR: All horses as a forage replacement or supplement. Specifically formulated for horses with Equine Cushings Disease and other related conditions where a nutritious diet low in non-structural carbohydrates is recommended. FEEDING: Feed at 1.5 to 2% total body weight per day. Feeding in a bucket or feed tub, preferably at ground level is recommended.</div>
+        <div class="product-price">$36.00</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/E-TEC Fibre-max _T 2.png" alt="Poulin ETEC Fibre-Max" />
+        <div class="product-title">Poulin ETEC Fibre-Max</div>
+        <div class="product-desc">Textured 14.0 Protein 14.0 Fat 20.0 Fiber 7.4 Starch 9.3 Sugar 1.54 Mcal/lb 0.3 lbs/cup Ca⁺RE EQ™ Chromium 100% Natural Vitamin E &amp; Organic Selenium Live Cell Yeast A high fat, high fiber super feed for performance horses that require high calorie intake but may be sensitive to grain rich diets. Suitable for every life stage, including seniors.</div>
+        <div class="product-price">$29.75</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/ETEC Balancer_T.png" alt="Poulin ETEC Balancer" />
+        <div class="product-title">Poulin ETEC Balancer</div>
+        <div class="product-desc">Pellet 28.0 Protein 3.0 Fat 11.0 Fiber 4.4 Starch 6.4 Sugar 1.13 Mcal/lb 0.3 lbs/cup Now with 28% Protein. A scientifically formulated pellet which balances nutrient profiles of unfortified grains and forage-only diets and allows for feeding program flexibility. Ideal for all horses including performance horses, “easy keepers”, ponies, miniature horses, horses with metabolic syndrome, broodmares, and growing horses. E-TEC® Balancer is designed to balance nutrient profiles, and provide adequate vitamins and minerals in a variety of feeding situations: Pasture or hay only diets Forage and whole grain diets Forage and commercial feed in less than the recommended amount</div>
+        <div class="product-price">$41.75</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/E-TEC Carb SafeV2_T 2.png" alt="Poulin ETEC Carb Safe&nbsp;" />
+        <div class="product-title">Poulin ETEC Carb Safe&nbsp;</div>
+        <div class="product-desc">Pellet 13.0 Protein 6.0 Fat 28.0 Fiber 2.2 Starch 3.5 Sugar 1.06 Mcal/lb 0.3 lbs/cup Formulated for horses that are sensitive to the sugar and starch content of feeds. With low levels of sugars and starches, this feed is well-suited for overweight horses and those suffering from Cushings, Insulin Resistance, Tying Up and Laminitis. Now featuring Chromium for improved glucose utilization, and Ca+RE EQ™ , a highly bioavailable algae derived calcium source for superior gastric buffering, improved bone density and repair, reduction in joint inflammation, and reduced overall stress.</div>
+        <div class="product-price">$26.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/E-TEC Fibre-max One_T 2.png" alt="Poulin ETEC One" />
+        <div class="product-title">Poulin ETEC One</div>
+        <div class="product-desc">Pellet 14.0 Protein 8.0 Fat 18.0 Fiber 10.4 Starch 4.4 Sugar 1.3 Mcal/lb 0.3 lbs/cup Highly fortified pelleted formula with no grains or molasses, designed for horses at any life stage. Now featuring Ca+RE EQ™ A highly bioavailable algae derived calcium source for superior gastric buffering, improved bone density and repair, reduction in joint inflammation, and reduced overall stress.</div>
+        <div class="product-price">$24.76</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Etec Senior Low Carb_T 2.png" alt="Poulin ETEC Senior Low Carb" />
+        <div class="product-title">Poulin ETEC Senior Low Carb</div>
+        <div class="product-desc">Pellet 14.0 Protein 10.0 Fat 20.0 Fiber 9.3 Starch 5.0 Sugar 1.38 Mcal/lb 0.3 lbs/cup A super-premium pelleted feed that does not contain grain or molasses, designed for the mature horse that is sensitive to sugars and starches. Now featuring Ca+RE EQ™ , a highly bioavailable algae derived calcium source for superior gastric buffering, improved bone density and repair, reduction in joint inflammation, and reduced overall stress.</div>
+        <div class="product-price">$26.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Bag0006_T 2.png" alt="Poulin Decade Challenger" />
+        <div class="product-title">Poulin Decade Challenger</div>
+        <div class="product-desc">Pellet 14.0 Protein 8.0 Fat 10.0 Fiber 20.7 Starch 5.6 Sugar 1.42 Mcal/lb 0.3 lbs/cup A pelleted feed formulated to meet the nutritional needs of pregnant mares and heavily worked performance horses.</div>
+        <div class="product-price">$21.45</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Bag0005_T 2.png" alt="Poulin Decade Complete Diet" />
+        <div class="product-title">Poulin Decade Complete Diet</div>
+        <div class="product-desc">Pellet 13.0 Protein 3.0 Fat 17.5 Fiber 12.1 Starch 5.9 Sugar 1.22 Mcal/lb 0.28 lbs/cup A high fiber, low fat pelleted feed designed to balance demands at all stages of your horse's life. Can be fed at higher rates to maximize fiber intake.</div>
+        <div class="product-price">$18.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Fiber advantage_T 2.png" alt="Poulin Decade Fiber Advantage&nbsp;" />
+        <div class="product-title">Poulin Decade Fiber Advantage&nbsp;</div>
+        <div class="product-desc">Textured 12.0 Protein 10.0 Fat 15.0 Fiber 8.5 Starch 9.9 Sugar 1.44 Mcal/lb 0.3 lbs/cup Decade® Fiber Advantage™ is a moderate fat &amp; fiber, beet pulp based feed designed to supply essential nutrients to maintenance, performance and breeding horses and ponies.</div>
+        <div class="product-price">$23.25</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Forage_Extender_T (1).png" alt="Poulin Forage Extender" />
+        <div class="product-title">Poulin Forage Extender</div>
+        <div class="product-desc">Pellet 12.0 Protein 2.0 Fat 28.0 Fiber 5.7 Starch 3.6 Sugar 1 Mcal/lb 0.4 lbs/cup Formulated to provide essential quality fiber in the horse’s diet. May be used to replace up to half the forage in an animal's diet on a pound for pound basis. Suitable for equines, sheep, cattle and goats, camelids and rabbits.</div>
+        <div class="product-price">$26.85</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/81+fuL1wBIL 2.jpg" alt="Redmond Rock" />
+        <div class="product-title">Redmond Rock</div>
+        <div class="product-desc">100% natural salt block for horses. Contains essential trace minerals. Trigger for hydration. Ideal for hanging in the barn, stall or fence post. Great electrolyte replacement. Keeps bored horses occupied.</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/apple-elite-paste-60cc-farnam__48391 2.jpg" alt="Apple Elite Electrolyte Paste" />
+        <div class="product-title">Apple Elite Electrolyte Paste</div>
+        <div class="product-desc">Replaces crucial electrolytes depleted through exercise, stress, heat or humidity. Helps horse's maintain the fluid level necessary for healthy normal function. Encourages drinking and rehydration. For all classes and ages of horses.</div>
+        <div class="product-price">$6.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/CP bag 2.png" alt="Poulin Equi-Pro Calorie Plus" />
+        <div class="product-title">Poulin Equi-Pro Calorie Plus</div>
+        <div class="product-desc">Granular/Supplement 99.0 Fat Sugar- free dry fat supplement for horses, designed to provide cool energy (calories) for weight gain and exercise performance. A palatable and easy to handle alternative to oils for all types of horses. Available in 6 lb or 15 lb bag.</div>
+        <div class="product-price">$24.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1 2.jpeg" alt="AniFlex GL 2.5 Lb" />
+        <div class="product-title">AniFlex GL 2.5 Lb</div>
+        <div class="product-desc">Ultimate joint and connective tissue support. Provides natural joint re-enforcing factors to enhance joint resiliency and function.</div>
+        <div class="product-price">$26.90</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/api9wroun__36330 2.jpg" alt="Farriers Formula Double Strength" />
+        <div class="product-title">Farriers Formula Double Strength</div>
+        <div class="product-desc">Twice the nutrient concentration compared to original farriers formula. Can by added as a top dressing on regular feed or given separately. After feeding for 6 to 8 months and desired results have been achieved the feeding level may be reduced by up to one half. Weanling to adults: feed at the predicted adult weight.</div>
+        <div class="product-price">$79.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/7 2.jpeg" alt="Pure MSM 2.5 Lb" />
+        <div class="product-title">Pure MSM 2.5 Lb</div>
+        <div class="product-desc">Natural solution for many types of pain and inflammation. Source of dietary sulfur to aid in the synthesis of collagen. Promotes joint, cartilage and skin health. No fillers.</div>
+        <div class="product-price">$15.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/4 2.jpeg" alt="Daily Gold Stress Relief" />
+        <div class="product-title">Daily Gold Stress Relief</div>
+        <div class="product-desc">Beet Pulp is the vegetable matter, which remains after sugar is extracted from sliced sugar beets. This vegetable matter is then made into pellets to improve its nutritional value and handling characteristics. It is high in fiber and unique in that its fiber is extremely digestible</div>
+        <div class="product-price">$18.90</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/5 2.jpeg" alt="Kauffman's Dicalcium Phosphate" />
+        <div class="product-title">Kauffman's Dicalcium Phosphate</div>
+        <div class="product-desc">A feed grade source of calcium and phosphorus suitable for the supplementation of animal rations. Each ounce will provides 6,200 milligrams of elemental Calcium (Ca) and a minimum of 5,200 milligrams of elemental Phosphorus (P).</div>
+        <div class="product-price">$44.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/7 2.jpeg" alt="Pure MSM 16 oz" />
+        <div class="product-title">Pure MSM 16 oz</div>
+        <div class="product-desc">Natural solution for many types of pain and inflammation. Source of dietary sulfur to aid in the synthesis of collagen. Promotes joint, cartilage and skin health. No fillers.</div>
+        <div class="product-price">$9.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1103910 2.jpg" alt="Redmond Rock&nbsp;" />
+        <div class="product-title">Redmond Rock&nbsp;</div>
+        <div class="product-desc">Guaranteed Analysis: Calcium (minimum).......0.35 % Calcium (maximum).......0.85 % Phosphorus (minimum)....0.02 % Salt (minimum)..........91.0 % Salt (maximum)..........96.0 % Magnesium (minimum).....0.06 % Potassium (minimum).....0.03 % Sulfur (minimum)........0.07 % Copper (minimum)...........3 ppm Iodine (minimum)..........10 ppm Iron (minimum)...........300 ppm Manganese (minimum)........5 ppm Zinc (minimum).............3 ppm Ingredient: Salt (Redmond NTM) The Redmond Story: Many years ago when the mountains were being formed, near what is now the town of Redmond, Utah, there existed a body of seawater and a lot of volcanic activity. These two events resulted in two very unique products, a natural mineral salt with the wholesome minerals from that pristine, unpolluted ocean captured within the crystallization of the salt, and a volcanic ash rich in the myriad of natural minerals usually only found deep within Mother Earth. Redmond Minerals simply extracts this unique blend of natural performance enhancing minerals from their pristine environment and makes them available to horse owners around the world. Many horse breeders report remarkable benefits to their horses from feeding these ancient natural minerals.</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/2300171 2.jpg" alt="Sodium Bicarb" />
+        <div class="product-title">Sodium Bicarb</div>
+        <div class="product-desc">Natural 99% sodium bicarbonate; high quality animal feed buffer - helps provide the buffering capacity necessary for maximum ruminal activity; extracted from deep within the mountains of Colorado - the only naturally occuring sodium bicarbonate produced in the world.</div>
+        <div class="product-price">$26.81</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/122 2.jpeg" alt="Corta-Flx Solution" />
+        <div class="product-title">Corta-Flx Solution</div>
+        <div class="product-desc">An amino acid, vitamin and mineral feed supplement for horses. For all classes of horses and activities. Contains 40 mg of ha per 1 ounce serving.</div>
+        <div class="product-price">$39.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/61mIuciBEZL 2.jpg" alt="Vita-Biotin Hoof Supplement&nbsp;" />
+        <div class="product-title">Vita-Biotin Hoof Supplement&nbsp;</div>
+        <div class="product-desc">Biotin helps maintain healthy hoof growth. Supports strong hoof walls. Contains 6.25 mg of biotin per serving. For all horses, including pregnant mares</div>
+        <div class="product-price">$15.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/shopping 2.jpeg" alt="Corta-Flx Pellets 2.5 Lb" />
+        <div class="product-title">Corta-Flx Pellets 2.5 Lb</div>
+        <div class="product-desc">An amino acid, vitamin and mineral feed supplement for horses. For all classes of horses and activities. Contains 40 mg of ha per 1 ounce serving.</div>
+        <div class="product-price">$29.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/111111 2.jpeg" alt="U-Gard Powder&nbsp;" />
+        <div class="product-title">U-Gard Powder&nbsp;</div>
+        <div class="product-desc">Highly effective on gastric ulcers. Aids in maintaining proper stomach pH Contains calcium and magnesium, which aid in acid reduction Supports a healthy stomach lining Made in the usa</div>
+        <div class="product-price">$25.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/shopping1 2.jpeg" alt="Via Calm 2Lbs" />
+        <div class="product-title">Via Calm 2Lbs</div>
+        <div class="product-desc">Supplemental source of natural calming ingredients for anxious, restless or high strung horses. Source of live, naturally occurring beneficial micro-organisms to help promote the best possible digestion. Helps stabilize cecal and colon ph. Encourages healthy digestion and gut stability.</div>
+        <div class="product-price">$19.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Unknown1 2.jpeg" alt="UltraShield EX 1 Gallon&nbsp;&nbsp;" />
+        <div class="product-title">UltraShield EX 1 Gallon&nbsp;&nbsp;</div>
+        <div class="product-desc">Weatherproof, sweat-resistant formula able to provide up to 17 days of protection. Kills and repels biting and nuisance flies, mosquitoes, ticks and gnats. Can be used on horses, ponies, dogs and as a premise spray. Two sunscreens extend the repellent effectiveness.</div>
+        <div class="product-price">$79.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/shopping11 2.jpeg" alt="Banixx Horse &amp; Pet Spray 16 oz" />
+        <div class="product-title">Banixx Horse &amp; Pet Spray 16 oz</div>
+        <div class="product-desc">Powerful antifungal and antibacterial: Tissue-friendly, non-stinging formula combats any fungal and bacterial infections. Safe for use around eyes Safe for use: Formula is safe for use on wounds, infections, and other ailments and in conjunction with any veterinary prescribed medication Versatile remedy Helps treat wounds, scratches, rain rot, ringworm, abscesses, thrush, white line disease, rashes, fungus, and infected irritated skin Safe for pets and livestock: Suitable for use with horses, dogs, cats, donkeys, alpacas, rabbits, guinea pigs, sheep, swine, reptiles, and poultry Safe eco-friendly product Horse spray free of steroids antibiotics toxins alcohol and tea tree oils. No sting no burn. Safe for you safe for your pet</div>
+        <div class="product-price">$18.79</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Unknown2 2.jpeg" alt="Beet Pulp Pellets" />
+        <div class="product-title">Beet Pulp Pellets</div>
+        <div class="product-desc">Powerful antifungal and antibacterial: Tissue-friendly, non-stinging formula combats any fungal and bacterial infections. Safe for use around eyes Safe for use: Formula is safe for use on wounds, infections, and other ailments and in conjunction with any veterinary prescribed medication Versatile remedy Helps treat wounds, scratches, rain rot, ringworm, abscesses, thrush, white line disease, rashes, fungus, and infected irritated skin Safe for pets and livestock: Suitable for use with horses, dogs, cats, donkeys, alpacas, rabbits, guinea pigs, sheep, swine, reptiles, and poultry Safe eco-friendly product Horse spray free of steroids antibiotics toxins alcohol and tea tree oils. No sting no burn. Safe for you safe for your pet</div>
+        <div class="product-price">$26.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Unknown123.jpeg" alt="Bigeloil&nbsp;" />
+        <div class="product-title">Bigeloil&nbsp;</div>
+        <div class="product-desc">Effective rub that heals, refreshes, and invigorates sore muscles Reduces soreness from fatigue or strain. Stimulates superficial circulation. Antiseptic and antibacterial properties. Made in the usa</div>
+        <div class="product-price">$12.85</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Unknown9.jpeg" alt="Bronco Fly Spray 1 Qt" />
+        <div class="product-title">Bronco Fly Spray 1 Qt</div>
+        <div class="product-desc">Insecticide and repellent for use on horses, ponies, foals and in horse barns and stables. Repels and kills stable, horse, face, deer, house and horn flies plus mosquitoes, gnats, ticks, fleas, chiggers and lice. Non-oily insecticide repellent may be applied with a trigger spray applicator or as a wipe.</div>
+        <div class="product-price">$8.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/shopping1111.jpeg" alt="Cowboy Magic 4 Oz" />
+        <div class="product-title">Cowboy Magic 4 Oz</div>
+        <div class="product-desc">Pure conditioning, contains no water or alcohol. Deep conditions, restores moisture and strengthens hair. Clinically tested and dermatologist reviewed. Repels dirt, dust and sand resulting in long lasting shine without oil.</div>
+        <div class="product-price">$16.29</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Unknown1234 2.jpeg" alt="Endure Roll On Fly Repellent" />
+        <div class="product-title">Endure Roll On Fly Repellent</div>
+        <div class="product-desc">Beet Pulp is the vegetable matter, which remains after sugar is extracted from sliced sugar beets. This vegetable matter is then made into pellets to improve its nutritional value and handling characteristics. It is high in fiber and unique in that its fiber is extremely digestible</div>
+        <div class="product-price">$9.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/shopping45 2.jpeg" alt="Nature's Defense Fly Spray 32 Oz" />
+        <div class="product-title">Nature's Defense Fly Spray 32 Oz</div>
+        <div class="product-desc">For use on horses, ponies and foals. Combines </div>
+        <div class="product-price">$19.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+</div>
+<div id="no-results">No products found. Try another search.</div>
+
+<div class="facebook-follow">
+    <a href="https://www.facebook.com/hemlocks.farmandgarden.2025" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+        Follow us on Facebook
+    </a>
+</div>
+
+<footer>
+    &copy; 2025 Hemlocks Farm &#38; Garden. All rights reserved.
+</footer>
+
+<script>
+    // Load cart from localStorage or initialize
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Update cart count
+    function updateCartCount() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById("cart-count").textContent = count;
+    }
+
+    // Add item to cart and alert the user
+    function addToCart(name, price) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        alert(`${name} has been added to the cart.`);
+    }
+
+    // Live search filter + "No results" message
+    const searchInput = document.getElementById("search");
+    const noResults = document.getElementById("no-results");
+    const productGrid = document.querySelector(".product-grid");
+
+    searchInput.addEventListener("input", function() {
+        let filter = this.value.toLowerCase();
+        let products = document.querySelectorAll(".product-card");
+        let visibleCount = 0;
+
+        products.forEach(card => {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    // Add event listeners to all "Add to Cart" buttons
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".add-to-cart");
+        buttons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                const productCard = event.target.closest('.product-card');
+                const name = productCard.querySelector('.product-title').innerText.trim();
+                const priceText = productCard.querySelector('.product-price').innerText;
+                const price = parseFloat(priceText.replace('$', ''));
+                addToCart(name, price);
+            });
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+    });
+</script>
+
+</body>
+</html>

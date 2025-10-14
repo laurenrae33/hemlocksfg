@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemlocks Farm & Garden Products</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://www.paypal.com/sdk/js?client-id=AaWpUpVJSHN141dkxbaXnvBrEL8d0d9Crj88ZQy1Gv97d_wb-5nwaeXt2QYaNAuXRQEvRJf_ia9JV4WI&currency=USD"></script>
+<style>
+    #view-cart { position:fixed; top:10px; right:10px; z-index:999; }
+</style>
+</head>
+<body>
+
+<div class="container my-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Hemlocks Farm & Garden Products</h1>
+        <div id="view-cart">
+            <button class="btn btn-primary" onclick="goToCart()">
+                View Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </div>
+
+    <div class="row" id="product-list"></div>
+</div>
+
+<script>
+// Product data
+const PRODUCTS = [
+    {id:'h1', category:'horse', title:'Pelleted Horse Feed 50lb', price:24.99, img:'assets/img/placeholder.png', desc:'Balanced nutrition for performance horses.'},
+    {id:'h2', category:'horse', title:'Hoof Conditioner', price:12.50, img:'assets/img/placeholder.png', desc:'Keeps hooves healthy and moisturized.'},
+    {id:'l1', category:'livestock', title:'Calf Starter 50lb', price:21.99, img:'assets/img/placeholder.png', desc:'High-protein starter feed.'},
+    {id:'hg1', category:'home-garden', title:'All-Purpose Fertilizer 10lb', price:14.99, img:'assets/img/placeholder.png', desc:'Feeds flowers, veggies & shrubs.'},
+    {id:'w1', category:'wild-bird-deer', title:'Black Oil Sunflower 40lb', price:26.99, img:'assets/img/placeholder.png', desc:'Premium seed for wild birds.'},
+    {id:'f1', category:'food', title:'Local Honey 1lb', price:9.99, img:'assets/img/placeholder.png', desc:'Raw & unfiltered local honey.'},
+    {id:'d1', category:'delivery', title:'Delivery Zone A', price:10.00, img:'assets/img/placeholder.png', desc:'Local delivery within 5 miles.'},
+];
+
+// Render products as Bootstrap cards
+const productList = document.getElementById('product-list');
+PRODUCTS.forEach(product => {
+    const col = document.createElement('div');
+    col.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
+    col.innerHTML = `
+        <div class="card h-100">
+            <img src="${product.img}" class="card-img-top" alt="${product.title}">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${product.title}</h5>
+                <p class="card-text">${product.desc}</p>
+                <p class="fw-bold">Price: $${product.price.toFixed(2)}</p>
+                <input type="number" min="1" value="1" id="qty-${product.id}" class="form-control mb-2">
+                <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}')">Add to Cart</button>
+            </div>
+        </div>
+    `;
+    productList.appendChild(col);
+});
+
+// Add to cart function
+function addToCart(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    const qty = parseInt(document.getElementById(`qty-${product.id}`).value);
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(item => item.id === productId);
+    if(existing) {
+        existing.quantity += qty;
+    } else {
+        cart.push({...product, quantity: qty});
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${product.title} added to cart!`);
+    window.location.href = 'cart.html';
+}
+
+// Update cart count
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').innerText = count;
+}
+
+// Go to cart page
+function goToCart() {
+    window.location.href = 'cart.html';
+}
+
+// Initialize cart count
+updateCartCount();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

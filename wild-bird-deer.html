@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>home and garden page</title>
+ <link rel="stylesheet" href="/assets/css/styles.css" />
+<a href="/cart.html">View Cart</a>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      margin: 0;
+      padding: 0;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 16px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .product-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 10px 0 5px;
+    }
+    .product-desc {
+      font-size: 14px;
+      color: #555;
+    }
+    .product-price {
+      font-size: 16px;
+      margin: 8px 0;
+      color: #2e7d32;
+    }
+    .add-to-cart {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .add-to-cart:hover {
+      background: #388e3c;
+    }
+  </style>
+</head>
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hemlocks Farm and Garden</title>
+<header>
+  <img src="assets/img/hfglogo.jpeg" alt="Hemlocks Farm & Garden Logo" width="300">
+</header>
+
+  <!-- Main Styles -->
+	<script>
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = total;
+  }
+
+  function addToCart(id, name, price, image) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ id, name, price, image, quantity: 1 });
+    }
+    saveCart();
+    alert(`${name} added to cart.`);
+  }
+
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".product-card");
+      const id = card.dataset.id;
+      const name = card.dataset.name;
+      const price = parseFloat(card.dataset.price);
+      const image = card.dataset.image;
+      addToCart(id, name, price, image);
+    });
+  });
+
+  updateCartCount();
+</script>
+
+  <style>
+    body {
+      background-color: #2e2e2e;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #3b3b3b;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+    }
+
+    nav {
+      background-color: #444;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+      color: #cccccc;
+    }
+
+    .center-image {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .facebook-follow {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .facebook-follow a {
+      text-decoration: underline;
+      color: #4a90e2; /* Facebook blue */
+      font-size: 18px;
+    }
+
+    .facebook-follow a:hover {
+      color: #2d6bbf;
+    }
+
+    .facebook-follow img {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 40px;
+      color: black; /* Set footer text to black */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Hemlocks Farm &#38; Garden</h1>
+  </header>
+<style>
+  </style>
+  <link href="../../Documents/Unnamed Site 2/horsepage.css" rel="stylesheet" type="text/css">
+
+  <!-- Navigation -->
+<nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="horsepage.html">Horse</a></li>
+      <li><a href="livestockpage.html">Livestock</a></li>
+      <li><a href="homeandgardenpage.html">Home/Garden</a></li>
+	  <li><a href="wildbirddeerpage.html">Wild Bird/Deer</a></li>
+      <li><a href="deliverypage.html">Delivery</a></li>
+      <li><a href="contactpage.html">Contact Us</a></li>
+		<a href="../../Documents/Unnamed Site 2/cart.html">View Cart</a>
+		 <div id="cart-icon">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+    </ul>
+  </nav>
+ <script>
+  // Load cart from localStorage or initialize
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Add to cart
+  function addToCart(id, name, price) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ id, name, price, quantity: 1 });
+    }
+    saveCart();
+  }
+
+  // Save to localStorage
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Attach to buttons
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".product-card");
+      const id = card.dataset.id;
+      const name = card.dataset.name;
+      const price = parseFloat(card.dataset.price);
+      addToCart(id, name, price);
+      alert(`${name} added to cart.`);
+    });
+  });
+</script>
+
+
+<body>
+  <h1 style="text-align: center; color:#000000; padding-top: 20px;">Wild Bird &amp; Deer</h1>
+  <div class="product-grid">
+	</div>
+	</body>
+	</body> </html> </html>
+	

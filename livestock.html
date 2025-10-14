@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hemlocks — Livestock</title>
+<link rel="stylesheet" href="/assets/css/styles.css"/>
+<link href="assets/css/stylesheetactal.css" rel="stylesheet" type="text/css">
+<style>
+/* --- General Styles --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* --- Header & Navigation (Updated to meet requirements) --- */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0; /* Adjusted padding to allow full-width elements */
+    text-align: center;
+}
+
+.site-title {
+    font-size: 2.8em;
+    font-weight: 900;
+    margin: 0 auto 20px auto; /* Centered and added bottom margin */
+    display: block; /* Ensures centering works correctly */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: #555;
+    padding: 10px 20px;
+    box-sizing: border-box; /* Ensures padding is included in the total width */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.bottom-header {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* --- Product Grid Styling --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: auto;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-desc {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2e7d32;
+    margin: 8px 0;
+}
+
+/* --- Add to Cart Button --- */
+.product-card button {
+    background: #ffffff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.product-card button:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+#no-results {
+    display: none;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #c00;
+}
+</style>
+</head>
+<body data-category="livestock">
+
+<header>
+    <div class="site-title">Hemlocks Farm & Garden</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="horse.html">Horse</a></li>
+            <li><a href="livestock.html" class="active">Livestock</a></li>
+            <li><a href="home-garden.html">Home/Garden</a></li>
+            <li><a href="wild-bird-deer.html">Wild Bird/Deer</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="bottom-header">
+        <input id="search" type="search" placeholder="Search livestock products..." aria-label="Search" />
+      <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
+    </div>
+</header>
+<body>
+<div class="product-grid">
+
+    <div class="product-card">
+        <img src="assets/img/n.png" alt="Poulin Forage Extender" />
+        <div class="product-title"><p>Poulin Forage Extender</p></div>
+        <div class="product-desc">Pellet 12.0 Protein 2.0 Fat 28.0 Fiber 5.7 Starch 3.6 Sugar 1 Mcal/lb 0.4 lbs/cup Formulated to provide essential quality fiber in diet. May be used to replace up to half the forage in an animal's diet on a pound for pound basis. Suitable for equines, sheep, cattle and goats, camelids and rabbits</div>
+        <div class="product-price">$26.86</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Opti Calf_T 2.png" alt="Poulin 22% Calf Starter" />
+        <div class="product-title">Poulin 22% Calf Starter</div>
+        <div class="product-desc">Textured 22.0 Protein 3.5 Fat 7.0 Fiber A highly palatable 22% textured calf starter with rumen development and digestive support. Seasonally formulated with Clarifly® fly control.</div>
+        <div class="product-price">$23.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/po.png" alt="Poulin Gamebird/Turkey Maintenance" />
+        <div class="product-title">Poulin Gamebird/Turkey Maintenance</div>
+        <div class="product-desc">Crumble 22.0 Protein 4.0 Fat 4.5 Fiber A crumble starter and grower for ducks, geese and other heavy breed game birds and guinea fowl.</div>
+        <div class="product-price">$21.45</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Turkey Gamebird_T (1).png" alt="Gamebird/Turkey Starter&nbsp;" />
+        <div class="product-title">Gamebird/Turkey Starter&nbsp;</div>
+        <div class="product-desc">Crumble 28.0 Protein 3.0 Fat 4.0 Fiber A starter crumble for turkeys, gamebirds and guinea fowl.</div>
+        <div class="product-price">$21.25</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Sheep_T 2.png" alt="Sheep Complete Pellet" />
+        <div class="product-title">Sheep Complete Pellet</div>
+        <div class="product-desc">Pellet 16.0 Protein 3.5 Fat 10.0 Fiber A 16% protein pellet formulated to be fed as the sole ration to sheep over 100 lbs of body weight. This product may be fed with limited amounts of high quality forage if you so desire.</div>
+        <div class="product-price">$26.84</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Chick Starter 2.png" alt="Poulin Chick Starter&nbsp;" />
+        <div class="product-title">Poulin Chick Starter&nbsp;</div>
+        <div class="product-desc">Crumble 20.0 Protein 3.0 Fat 5.0 Fiber Poulin Grain Chick Starter Crumbles are formulated to give chicks a healthy head start, naturally.</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Cracked Corn 2.png" alt="Cracked Corn" />
+        <div class="product-title">Cracked Corn</div>
+        <div class="product-desc">6.5 Protein 3.0 Fat 5.0 Fiber Coarse cracked corn. May be added to Increase the energy levels in the total ration.</div>
+        <div class="product-price">$14.75</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Layer Pellet_T 2.png" alt="Egg Layer Pellets" />
+        <div class="product-title">Egg Layer Pellets</div>
+        <div class="product-desc">Pellet 16.5 Protein 3.0 Fat 4.0 Fiber A premium pellet formulated for laying birds.</div>
+        <div class="product-price">$17.93</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Layer Crumble_T 2.png" alt="Egg Layer Crumbles" />
+        <div class="product-title">Egg Layer Crumbles</div>
+        <div class="product-desc">Crumble 16.5 Protein 3.0 Fat 4.0 Fiber A premium crumble formulated for laying birds. Meets the unique niacin requirements of ducks.</div>
+        <div class="product-price">$17.83</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Scratch Feed_T 2.png" alt="Scratch Feed" />
+        <div class="product-title">Scratch Feed</div>
+        <div class="product-desc">Whole Grain or Seed 7.5 Protein 2.5 Fat 5.0 Fiber A mixture of cracked corn and whole oats to feed along with a complete grower or layer feed</div>
+        <div class="product-price">$21.86</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Bag0003_T 2.png" alt="Meat Bird Crumbles" />
+        <div class="product-title">Meat Bird Crumbles</div>
+        <div class="product-desc">Crumble 20.0 Protein 3.0 Fat 5.0 Fiber A crumble formulated for rapidly growing meat birds.</div>
+        <div class="product-price">$21.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Bag0010_T 2.png" alt="Sweet Deer Feed 14%" />
+        <div class="product-title">Sweet Deer Feed 14%</div>
+        <div class="product-desc">Textured 14.0 Protein 3.4 Fat 10.0 Fiber A complete textured feed formulated for Wild or Fallow Deer.</div>
+        <div class="product-price">$18.98</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/2100048 2.jpg" alt="Swine PreMix 22:11&nbsp; &nbsp;" />
+        <div class="product-title">Swine PreMix 22:11&nbsp; &nbsp;</div>
+        <div class="product-desc">Swine Trace Mineral Premix Use: For Further Manufacture of Feed. Guaranteed Analysis: Calcium (Ca)(Min)......6.0 % Calcium (Ca)(Max)......7.0 % Selenium (Se)..........198 ppm Zinc (Zn)............11.02 % Iron (Fe)............11.02 % Manganese (Mn)........1.98 % Copper (Cu)...........1.07 % Iodine (I).............198 ppm</div>
+        <div class="product-price">$62.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Generic Bag T 2.png" alt="Poulin Goat Mineral" />
+        <div class="product-title">Poulin Goat Mineral</div>
+        <div class="product-desc">Granular/Supplement Goat mineral is a loose complete vitamin and mineral for growing and mature goats. This product should be fed as a sole source of salt.</div>
+        <div class="product-price">$52.96</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Whole Corn 2.png" alt="Whole Corn 50 Lbs" />
+        <div class="product-title">Whole Corn 50 Lbs</div>
+        <div class="product-desc">6.5 Protein 5.0 Fat 3.0 Fiber Whole kernel corn. May be fed when a higher energy level in the diet is desired.</div>
+        <div class="product-price">$14.75</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Natural Feed Grains_T 2.png" alt="Local Oats 50 Lbs" />
+        <div class="product-title">Local Oats 50 Lbs</div>
+        <div class="product-desc">Whole Grain or Seed 10.0 Protein 3.0 Fat 15.0 Fiber 0.2 lbs/cup Rolled oats</div>
+        <div class="product-price">$26.83</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1601382 2.jpg" alt="Alfalfa Cubes&nbsp;" />
+        <div class="product-title">Alfalfa Cubes&nbsp;</div>
+        <div class="product-desc">Pre-bloom Alfalfa, dehydrated and cubed to preserve nutrients and prevent mold &amp; dust; A consistent, convenient forage replacement or supplement. Packaged in 50 lb bags. (Also available as 7/8" mini cube). Crude Protein: (Min) 15%; Crude Fiber: (Max) 30%; Crude Fat: (Min) 1.5%; Moisture: (Max) 12%; Recommended for all horses; sheep; goats; camels; deer; rabbits and other species, as a forage replacement or supplement; 50 lb bag.</div>
+        <div class="product-price">$25.95</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/alfpell 2.png" alt="Alfalfa Pellets" />
+        <div class="product-title">Alfalfa Pellets</div>
+        <div class="product-desc">17.0 Protein 1.0 Fat 25.0 Fiber 0.3 lbs/cup Alfalfa Pellets are intended to be used as a supplement along with your horses daily feed ration.</div>
+        <div class="product-price">$26.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/Coastal_brand_poultry_shell_ 2.jpg" alt="Oyster Shells 50 lbs" />
+        <div class="product-title">Oyster Shells 50 lbs</div>
+        <div class="product-desc">Hens have the ability to adjust their intake of calcium according to individual requirements. To provide birds the opportunity of balancing their own calcium needs, mix 100 pounds of pullet size shells to each ton of complete feed. Higher levels of shells may be needed depending upon feed formulations. If excessive amounts of shells accumulate in the feed troughs, reduce the level of added shells. This practice, referred to as, "In-Feed Free Choice Feeding of Calcium", has the following advantages: 1. Eliminates labor required in supplying free choice shells in separate feeders yet the hens still have the opportunity to balance their calcium needs. 2. Hens are not forced to eat more calicum than their individual requirements. 3. Pullet size shells are not as dusty or unpalatable as finely ground forms of calcium. 4. Reduces the separation of calcium associated with the handling of feeds using finely ground high density sources of calcium. 5. Maintanis free-flow characteristics of feed and help to prevent bridging and caking in bulk and automatic feeding equipment. Guaranteed Analysis Calcium Minimum 38.8% Calcium Maximum 39.8% Ingredients Crushed Shell Calcium Carbonate Oyster shell and Calcium.</div>
+        <div class="product-price">$26.92</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/asd 2.jpeg" alt="Bag Balm 1 oz" />
+        <div class="product-title">Bag Balm 1 oz</div>
+        <div class="product-desc">Use on paw pads, noses or hot spots. Moisturizes and conditions paw pads, soothes hot spots. Uniquely formulated to discourage licking.</div>
+        <div class="product-price">$11.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+</div>
+
+<div id="no-results">No products found. Try another search.</div>
+
+<div class="facebook-follow">
+    <a href="https://www.facebook.com/hemlocks.farmandgarden.2025" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+        Follow us on Facebook
+    </a>
+</div>
+
+<footer>
+    &copy; 2025 Hemlocks Farm &#38; Garden. All rights reserved.
+</footer>
+
+<script>
+    // Load cart from localStorage or initialize
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Update cart count
+    function updateCartCount() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById("cart-count").textContent = count;
+    }
+
+    // Add item to cart and alert the user
+    function addToCart(name, price) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        alert(`${name} has been added to the cart.`);
+    }
+
+    // Live search filter + "No results" message
+    const searchInput = document.getElementById("search");
+    const noResults = document.getElementById("no-results");
+    const productGrid = document.querySelector(".product-grid");
+
+    searchInput.addEventListener("input", function() {
+        let filter = this.value.toLowerCase();
+        let products = document.querySelectorAll(".product-card");
+        let visibleCount = 0;
+
+        products.forEach(card => {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    // Add event listeners to all "Add to Cart" buttons
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".add-to-cart");
+        buttons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                const productCard = event.target.closest('.product-card');
+                const name = productCard.querySelector('.product-title').innerText.trim();
+                const priceText = productCard.querySelector('.product-price').innerText;
+                const price = parseFloat(priceText.replace('$', ''));
+                addToCart(name, price);
+            });
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+    });
+</script>
+
+</body>
+</html>

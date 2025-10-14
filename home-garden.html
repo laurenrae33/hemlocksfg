@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hemlocks — Home/Garden</title>
+<link rel="stylesheet" href="/assets/css/styles.css"/>
+<link href="assets/css/stylesheetactal.css" rel="stylesheet" type="text/css">
+<style>
+/* --- General Styles --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* --- Header & Navigation (Updated to meet requirements) --- */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0; /* Adjusted padding to allow full-width elements */
+    text-align: center;
+}
+
+.site-title {
+    font-size: 2.8em;
+    font-weight: 900;
+    margin: 0 auto 20px auto; /* Centered and added bottom margin */
+    display: block; /* Ensures centering works correctly */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: #555;
+    padding: 10px 20px;
+    box-sizing: border-box; /* Ensures padding is included in the total width */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+}
+
+.bottom-header {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#search {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* --- Product Grid Styling --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    width: auto;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-desc {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #2e7d32;
+    margin: 8px 0;
+}
+
+/* --- Add to Cart Button --- */
+.product-card button {
+    background: #ffffff;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.product-card button:hover {
+    background: #4CAF50;
+    color: #fff;
+}
+
+#no-results {
+    display: none;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #c00;
+}
+</style>
+</head>
+<body data-category="home/garden">
+
+<header>
+    <div class="site-title">Hemlocks Farm & Garden</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="horse.html">Horse</a></li>
+            <li><a href="livestock.html">Livestock</a></li>
+            <li><a href="home-garden.html" class="active">Home/Garden</a></li>
+            <li><a href="wild-bird-deer.html">Wild Bird/Deer</a></li>
+            <li><a href="delivery.html">Delivery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="bottom-header">
+        <input id="search" type="search" placeholder="Search home & garden products..." aria-label="Search" />
+        <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
+    </div>
+</header>
+<div class="product-grid">
+
+    <div class="product-card">
+        <img src="assets/img/71aPj6IvzdL 2.jpg" alt="P-Line Tarp 12x20" />
+        <div class="product-title"><p>P-Line Tarp 12x20</p></div>
+        <div class="product-desc">Keep your boat, car, or pool safe and covered using the heavy-duty blue tarp by P-Line. Easy to use, practical, and versatile, this outdoor tarp is a great solution to keep shelter motor-vehicles from dust, rain, and powerful sunlight. Our heavy-duty waterproof tarps are made of tightly-woven polyethylene fibers. Ensuring proper shelter for your car or pool or whatever you keep outdoor. The heavy-duty double laminated coating is sturdy and long-lasting. This canopy tarp has metal grommets every 3 feet that allow for a secure tie-down against moisture and rain. This rain tarp is only 5 mm thick but can protect your car, boat, or pool from heavy rain, storms, dirt, and direct sunlight. It is ultra-lightweight and portable, as well as foldable so you can easily store it when not used.</div>
+        <div class="product-price">$27.03</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/71aPj6IvzdL 2.jpg" alt="P-Line Tarp 9x12" />
+        <div class="product-title">P-Line Tarp 9x12</div>
+        <div class="product-desc">Keep your boat, car, or pool safe and covered using the heavy-duty blue tarp by P-Line. Easy to use, practical, and versatile, this outdoor tarp is a great solution to keep shelter motor-vehicles from dust, rain, and powerful sunlight. Our heavy-duty waterproof tarps are made of tightly-woven polyethylene fibers. Ensuring proper shelter for your car or pool or whatever you keep outdoor. The heavy-duty double laminated coating is sturdy and long-lasting. This canopy tarp has metal grommets every 3 feet that allow for a secure tie-down against moisture and rain. This rain tarp is only 5 mm thick but can protect your car, boat, or pool from heavy rain, storms, dirt, and direct sunlight. It is ultra-lightweight and portable, as well as foldable so you can easily store it when not used.</div>
+        <div class="product-price">$26.88</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/71aPj6IvzdL 2.jpg" alt="P-Line Tarp 20x25" />
+        <div class="product-title">P-Line Tarp 20x25</div>
+        <div class="product-desc">Keep your boat, car, or pool safe and covered using the heavy-duty blue tarp by P-Line. Easy to use, practical, and versatile, this outdoor tarp is a great solution to keep shelter motor-vehicles from dust, rain, and powerful sunlight. Our heavy-duty waterproof tarps are made of tightly-woven polyethylene fibers. Ensuring proper shelter for your car or pool or whatever you keep outdoor. The heavy-duty double laminated coating is sturdy and long-lasting. This canopy tarp has metal grommets every 3 feet that allow for a secure tie-down against moisture and rain. This rain tarp is only 5 mm thick but can protect your car, boat, or pool from heavy rain, storms, dirt, and direct sunlight. It is ultra-lightweight and portable, as well as foldable so you can easily store it when not used.</div>
+        <div class="product-price">$29.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/112.jpeg" alt="Fatwood Firestarter 10 lbs" />
+        <div class="product-title">Fatwood Firestarter 10 lbs</div>
+        <div class="product-desc">100% all natural pine wood hand split approx 8in length. Fatwood offers a safe, simple, and mess-free way to start any fire and is used in fireplaces, pellet fuel stoves, barbecues. Place two(2) sticks in fire area and light with match.</div>
+        <div class="product-price">$27.02</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570506.jpg" alt="Bonide Poison Oak &amp; Ivy Killer" />
+        <div class="product-title">Bonide Poison Oak &amp; Ivy Killer</div>
+        <div class="product-desc">Contains Trimec® three way herbicide for effective weed control to the roots. Systemic. Rainfast upon drying.506</div>
+        <div class="product-price">$27.02</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570883.jpg" alt="Bonide Fung-onil 32 oz&nbsp;" />
+        <div class="product-title">Bonide Fung-onil 32 oz&nbsp;</div>
+        <div class="product-desc">No measure, no mix, no mess! The simple solution for disease free roses and flowers, trees and shrubs, vegetable gardens. Odorless, water based 0.087% chlorothalonil-controls virtually all major garden disease problems!</div>
+        <div class="product-price">$26.98</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/880h.jpg" alt="Bonide Fung-onil Concentrate" />
+        <div class="product-title">Bonide Fung-onil Concentrate</div>
+        <div class="product-desc">Chlorothalonil 29.6% Truly all purpose. Controls numerous diseases on roses, flowers and vegetables, fruit and shade trees. Use as little as 1-1/2 teaspoons per gallon.880</div>
+        <div class="product-price">$32.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570024.jpg" alt="Neem Oil Concentrate" />
+        <div class="product-title">Neem Oil Concentrate</div>
+        <div class="product-desc">An all purpose insecticide, miticide, fungicide for organic gardening. Derived from the Neem seed, Neem oil is an excellent choice for use on virtually any plant, including roses, flowers, vegetables, herbs, spices, houseplants, trees, turf and shrubs. Kills all stages of insects - eggs, larvae and adults. Makes a great dormant spray. Imparts a healthy shine to hardy leaf surfaces. Comes in economical concentrate and convenient ready to use</div>
+        <div class="product-price">$26.92</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570025.jpg" alt="Neem Oil Spray Bottle 32 Oz" />
+        <div class="product-title">Neem Oil Spray Bottle 32 Oz</div>
+        <div class="product-desc">Potassium salts derived from NEEM seed oil fatty acids. A fabulous combination insecticidal soap plus NEEM. Highly effective on an extensive array of insects and diseases. Ideal for use on houseplants, herbs, vegetables, nuts, fruit, flowers, trees, lawns, roses, shrubs...Indoor/outdoor, water based, use up to day of harvest.</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/za.jpeg" alt="Green Gobbler Weed Killer" />
+        <div class="product-title">Green Gobbler Weed Killer</div>
+        <div class="product-desc">Eliminate any type of weed in just a matter of hours. Expect full desiccation in less than 24 hours. Green Gobbler contains 20% acetic acid. Use on crabgrass, dandelions, clover weeds, white clover, moss, etc. SAFE TO USE Perfect for residential, commercial, industrial and agricultural use. Apply where weeds and grasses are not desired. Use on driveways, sidewalks, concrete, mulch beds, pavers, flower beds, parking lots, farmlands, barns, etc. Ready to use right out the container.</div>
+        <div class="product-price">$26.97</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/zxc 2.jpeg" alt="Pramitol 25E Weed Killer 2.5 Gallons" />
+        <div class="product-title">Pramitol 25E Weed Killer 2.5 Gallons</div>
+        <div class="product-desc">An industrial weed killer that acts as a soil sterilant preventing growth for up to 1 year from application. For use in rock beds, driveways, construction sites, pipe yards and other commercial areas. Soil sterilant preventing plant growth for up to 1 year</div>
+        <div class="product-price">$265.50</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/zxc.jpeg" alt="Pramitol 25E Weed Killer 1 Gallon" />
+        <div class="product-title">Pramitol 25E Weed Killer 1 Gallon</div>
+        <div class="product-desc">An industrial weed killer that acts as a soil sterilant preventing growth for up to 1 year from application. For use in rock beds, driveways, construction sites, pipe yards and other commercial areas. Soil sterilant preventing plant growth for up to 1 year</div>
+        <div class="product-price">$109.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1501230-67fe4dafcb147.jpg" alt="Bale in a Bag Barley Straw Pond Treatment&nbsp;" />
+        <div class="product-title">Bale in a Bag Barley Straw Pond Treatment&nbsp;</div>
+        <div class="product-desc">Algae cause a number of problems in water. They impede flow in drainage systems, block pumps, interfere with navigation, fishing and other forms of recreation, cause taint and odor problems in potable waters, block filters and, in some instances, create a health hazard to humans, livestock, and wildlife. The suppression of dense algal growth has allowed flowering plants to recolonize waters which were previously dominated by algae. Straw treatments may be associated with improved gill function and fish health and vigor.</div>
+        <div class="product-price">$42.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1q.jpeg" alt="Liquid Fence Animal Repellent Spray 32 oz" />
+        <div class="product-title">Liquid Fence Animal Repellent Spray 32 oz</div>
+        <div class="product-desc">Starts to work immediately Harmless to plants and animals Safe around kids, pets &amp; wildlife Safe for edible plants Lasts up to 4 weeks against rabbits</div>
+        <div class="product-price">$26.96</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/11q.jpeg" alt="Liquid Fence Animal Repellent Concentrate" />
+        <div class="product-title">Liquid Fence Animal Repellent Concentrate</div>
+        <div class="product-desc">Harmless to plants and animals, when used as directed Rain resistant Apply year-round Repels deer and rabbits from landscaped ornamental gardens, flowers, shrubs, trees and vines</div>
+        <div class="product-price">$40.49</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1qa.jpeg" alt="Liquid Fence Animal Repellent Granular 2 lbs" />
+        <div class="product-title">Liquid Fence Animal Repellent Granular 2 lbs</div>
+        <div class="product-desc">Works on scent, so animals don't have to take a bite to be repelled. Will stop the foraging cycle before it begins. Long lasting and rain resistant. Won't harm animals or plants</div>
+        <div class="product-price">$16.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570099.jpg" alt="Bonide Wilt Stop Spray 32 oz" />
+        <div class="product-title">Bonide Wilt Stop Spray 32 oz</div>
+        <div class="product-desc">Pre-bloom Alfalfa, dehydrated and cubed to preserve nutrients and prevent mold &amp; dust; A consistent, convenient forage replacement or supplement. Packaged in 50 lb bags. (Also available as 7/8" mini cube). Crude Protein: (Min) 15%; Crude Fiber: (Max) 30%; Crude Fat: (Min) 1.5%; Moisture: (Max) 12%; Recommended for all horses; sheep; goats; camels; deer; rabbits and other species, as a forage replacement or supplement; 50 lb bag.</div>
+        <div class="product-price">$14.98</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570103.jpg" alt="Bondie Wilt Stop Concentrate" />
+        <div class="product-title">Bondie Wilt Stop Concentrate</div>
+        <div class="product-desc">This natural, non-toxic product, derived from the resin of pine trees, has the unique ability to form a soft, clear flexible film on treated plants. This film protects plants from drying out, drought, wind burn, sunscald, winter kill, transplant shock and salt damage. WILT STOPTM also extends life of cut flowers and Christmas trees. Great for use year around on deciduous trees, evergreens, shrubs, roses, transplants, vegetables, fruit--- RTU-5% Pinene. Concentrate-25% Pinene. RTS-90% Pinene</div>
+        <div class="product-price">$26.94</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1305071.jpg" alt="Preen Weed Preventer 5000 sq ft" />
+        <div class="product-title">Preen Weed Preventer 5000 sq ft</div>
+        <div class="product-desc">Stop weeds from growing for three months, guaranteed. Preen Garden Weed Preventer can be used around 200 established plants in flower and vegetable gardens, in ground covers, and around trees and shrubs.</div>
+        <div class="product-price">$89.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/13050721.jpeg" alt="Preen Weed Preventer with Plant Food Granules&nbsp;" />
+        <div class="product-title">Preen Weed Preventer with Plant Food Granules&nbsp;</div>
+        <div class="product-desc">One easy application of Preen Garden Weed Preventer Plus Plant Food prevents weeds for up to three months and feeds your plants to promote beautiful blooms and strong root growth.</div>
+        <div class="product-price">$11.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1570257.jpg" alt="Bonide Captain Jacks DeBug 1.5 lbs" />
+        <div class="product-title"><p>Bonide Captain Jacks DeBug 1.5 lbs</p></div>
+        <div class="product-desc">Captain Jacks tremendously popular family of Dead Bug Brew Spinosad products gets only better with this exclusive, ready to use dust formulation. Convenient, economical, and perfect for vegetable or flower garden spot treatment. Why use Sevin when you can 'Go gardening with the Captain'</div>
+        <div class="product-price">$9.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/15702611.jpg" alt="Captain Jacks LawnWeed Brew 32 oz" />
+        <div class="product-title">Captain Jacks LawnWeed Brew 32 oz</div>
+        <div class="product-desc">Derived from Iron, Captain Jack's Lawnweed Brew offers selective control of weeds, disease, moss, algae, and lichens in lawns. The active ingredient is derived from iron, which occurs in nature. Kills many common weeds like dandelion, clover, moss, narrow-leaved plantain, chickweed, and thistle. Works quickly, as dying weeds will be seen within hours of application.</div>
+        <div class="product-price">$18.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/2603.jpg" alt="Captain Jacks DeadWeed Brew" />
+        <div class="product-title">Captain Jacks DeadWeed Brew</div>
+        <div class="product-desc">Our weed killing formula can provide results in just hours! Additionally, once this product dries after application it becomes waterproof! &nbsp;It works in temperatures as low as 40 degrees Fahrenheit. It is great for use around borders, driveways, sidewalks, the base of mature trees, around buildings, fence lines, barns, pastures, school grounds, greenhouses, and more. Approved for organic gardening.</div>
+        <div class="product-price">$21.45</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/zaz.jpeg" alt="Captain Jacks DeadBug  Concentrate" />
+        <div class="product-title">Captain Jacks DeadBug &nbsp;Concentrate</div>
+        <div class="product-desc">Contains the all-natural insecticide spinosad. Provides excellent control of bagworms, leaf miners, beetles, caterpillars and colorado potato beetle. Also kills tent caterpillars, thrips. Use on fruits, vegetables, berries, citrus, grapes, nuts and ornamentals.</div>
+        <div class="product-price">$39.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/asz.jpeg" alt="Captain Jacks DeadBug Spray&nbsp;" />
+        <div class="product-title">Captain Jacks DeadBug Spray&nbsp;</div>
+        <div class="product-desc">Contains the all-natural insecticide spinosad Kills bagworms, borers, beetles, caterpillars, codling moth, gypsy moth, loopers, leaf miners, spider mites. Also kills tent caterpillars, thrips. Use on fruits, vegetables, berries, citrus, grapes, nuts and ornamentals. Made in the usa</div>
+        <div class="product-price">$9.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/qaz.jpeg" alt="Captain Jacks Deadbug Concentrate 8 oz" />
+        <div class="product-title">Captain Jacks Deadbug Concentrate 8 oz</div>
+        <div class="product-desc">Contains the all-natural insecticide spinosad Kills bagworms, borers, beetles, caterpillars, codling moth, gypsy moth, loopers, leaf miners, spider mites. Also kills tent caterpillars, thrips. Use on fruits, vegetables, berries, citrus, grapes, nuts and ornamentals. Made in the usa</div>
+        <div class="product-price">$26.86</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/qwe 2.jpeg" alt="Miracle Gro Bloom Booster 5.5 lbs" />
+        <div class="product-title">Miracle Gro Bloom Booster 5.5 lbs</div>
+        <div class="product-desc">Promotes more blooms for greater color versus unfed plants Feed every 1-2 weeks Safe for all plants, guaranteed not to burn when used as directed Formulated for beautiful blooms</div>
+        <div class="product-price">$26.86</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/qazx.jpeg" alt="Miracle Gro All Purpose Plant Food" />
+        <div class="product-title">Miracle Gro All Purpose Plant Food</div>
+        <div class="product-desc">Feeds all plants: Miracle-Gro Water Soluble All Purpose Plant Food feeds all outdoor, in-ground and indoor plants, including roses, flowers, houseplants, vegetables, and trees Promotes growth: This all-purpose plant food grows bigger, more beautiful plants (vs unfed plants) and starts working instantly to promote quick, beautiful results NPK: 24-8-16 plant fertilizer contains Nitrogen (N), Phosphorus (P) and Potassium (K) which are key nutrients plants need to thrive</div>
+        <div class="product-price">$17.93</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/asdf.jpeg" alt="Bonide Colorado Potato Beetle Beater Concentrate" />
+        <div class="product-title">Bonide Colorado Potato Beetle Beater Concentrate</div>
+        <div class="product-desc">Controls certain insects in vegetable gardens and kills colorado potato beetle. Makes up to 8 gallons of spray. No odor water-based formula. Leaves no oily residue.</div>
+        <div class="product-price">$18.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/azxs.jpeg" alt="Osmocote Plus 1 lb" />
+        <div class="product-title">Osmocote Plus 1 lb</div>
+        <div class="product-desc">Feed indoor and outdoor potted plants for up to a full 6 months with Osmocote Smart-Release Plant Food Plus Outdoor &amp; Indoor. This is our best formula, and it is fortified with 11 essential nutrients. It works with virtually all plant varieties, in all growing conditions. Plus, we offer our no-burn pledge when you use Osmocote as directed</div>
+        <div class="product-price">$26.87</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/azxc.jpeg" alt="Bonide Rooting Powder" />
+        <div class="product-title">Bonide Rooting Powder</div>
+        <div class="product-desc">Ideal for transplants as well as rooting houseplants. Labeled for use with cuttings from azaleas, mums, geraniums, pachysandra, poinsettias, and a wide range of other plants. Simply cut dip and plant</div>
+        <div class="product-price">$5.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/p.jpeg" alt="Bond Hedge Sheers" />
+        <div class="product-title">Bond Hedge Sheers</div>
+        <div class="product-desc">10 1/2 inch blades. Triangle steel tube. Straight edge blades. Heat treated carbon steel blades. Soft grip.</div>
+        <div class="product-price">$26.91</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/zxcv.jpeg" alt="Earthway Bag Spreader" />
+        <div class="product-title">Earthway Bag Spreader</div>
+        <div class="product-desc">Rocking agitator provides smooth, even material feeding to the distribution plate. Contoured molded base. Adjustable shoulder strap. Spring loaded shut-off.</div>
+        <div class="product-price">$79.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1301215-6878f004be175 3.jpg" alt="Cedar Mulch 3 cu ft Natural" />
+        <div class="product-title">Cedar Mulch 3 cu ft Natural</div>
+        <div class="product-desc">Cedar Mulch is naturally resistant to insects, rot and decay, which results in a longer lasting mulch than most. Mulch helps reduce the growth of weeds and prevents the loss of water from evaporation. ideal for landscaping</div>
+        <div class="product-price">$5.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1301228-6878efab8085d.jpg" alt="Cedar Mulch 3 cu ft Red" />
+        <div class="product-title">Cedar Mulch 3 cu ft Red</div>
+        <div class="product-desc">Cedar Mulch is naturally resistant to insects, rot and decay, which results in a longer lasting mulch than most. Mulch helps reduce the growth of weeds and prevents the loss of water from evaporation. ideal for landscaping</div>
+        <div class="product-price">$5.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1301232-6878ef88b3b2b.jpg" alt="Cedar Mulch 3 cu ft Black" />
+        <div class="product-title">Cedar Mulch 3 cu ft Black</div>
+        <div class="product-desc">Cedar Mulch is naturally resistant to insects, rot and decay, which results in a longer lasting mulch than most. Mulch helps reduce the growth of weeds and prevents the loss of water from evaporation. ideal for landscaping</div>
+        <div class="product-price">$5.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/1303898-6878ef5836a04.jpg" alt="Cedar Mulch 3 cu ft Dark Brown" />
+        <div class="product-title">Cedar Mulch 3 cu ft Dark Brown</div>
+        <div class="product-desc">Cedar Mulch is naturally resistant to insects, rot and decay, which results in a longer lasting mulch than most. Mulch helps reduce the growth of weeds and prevents the loss of water from evaporation. ideal for landscaping</div>
+        <div class="product-price">$5.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/COM_Quoddy-Blend_Compost-Blend_1-CF_Front-66a92492bff39 3.jpg" alt="Coast of Maine Lobster&nbsp; Compost" />
+        <div class="product-title">Coast of Maine Lobster&nbsp; Compost</div>
+        <div class="product-desc">This expanding line of organically certified plant food and compost-based soils represents a real environmental win-win: we are finding important new uses for our region’s natural resources and introducing our customers to a cost-effective alternative for growing beautiful, healthy, disease and pest resistant plants.Quoddy Blend is made from composted crab, lobster and aspen bark. The crab and lobster shells are a rich source of calcium and chitin, the aspen bark a source of tannins and lignins. It’s a blend that’s perfect for your vegetable garden, especially for your tomatoes! The calcium content is beneficial for lilacs and roses too.</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/asxz.jpeg" alt="Coast of Maine Lobster Meal" />
+        <div class="product-title">Coast of Maine Lobster Meal</div>
+        <div class="product-desc">Unique single-ingredient fertilizer, high in both natural nitrogen and calcium to help promote strong stem growth</div>
+        <div class="product-price">$29.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/m 2.jpeg" alt="Coast of Maine Kelp Meal" />
+        <div class="product-title">Coast of Maine Kelp Meal</div>
+        <div class="product-desc">A soil amendment providing a valuable source of macro- and micro-nutrients that promotes healthier plants and improved crop yields. Promotes root &amp; plant growth</div>
+        <div class="product-price">$23.89</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/sad.jpeg" alt="Coast of Maine Seed Starter 16 oz" />
+        <div class="product-title">Coast of Maine Seed Starter 16 oz</div>
+        <div class="product-desc">Rich mixture of sphagnum peat moss perlite kelp meal worm castings and compost Contains mycorrhizae and is ready to use in cell packs or flats Has a mild organic fertilizer that creates a biologically diverse environment for germinating seed</div>
+        <div class="product-price">$11.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/azsd 2.jpeg" alt="Coast of Maine Fishbone Meal" />
+        <div class="product-title">Coast of Maine Fishbone Meal</div>
+        <div class="product-desc">A source of phosphorus, calcium, nitrogen and essential minerals for budding and blooming plants. Suitable for fertilizing bulbs, vegetable gardens, outdoor container gardens and trees and shrubs. Preservative-free and an effective alternative for traditional steamed bone meal.</div>
+        <div class="product-price">$21.58</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/11303984.jpg" alt="Coast of Maine Platnium Grow Mix" />
+        <div class="product-title">Coast of Maine Platnium Grow Mix</div>
+        <div class="product-desc">A complex “super soil” designed for high performance container growing. It works well with tomatoes, and, where growing cannabis and medical marijuana is legal, growers have reported tremendous results. This soil incorporates mycorrhizal fungi, kelp, fish bone and alfalfa meal, as well as worm castings, peat, coir and lobster compost. When growing in 15 gallon containers, there is no need for additional nutrients. 1.5 cu ft bag.</div>
+        <div class="product-price">$32.97</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/mn.jpeg" alt="Black Gold Potting Mix 1 Qt" />
+        <div class="product-title">Black Gold Potting Mix 1 Qt</div>
+        <div class="product-desc">Slow release complete fertilizer is added to give plants a strong start Made with Canadian sphagnum peat moss with worm castings Multi purpose nutrient rich mix thats ideal for all plants</div>
+        <div class="product-price">$6.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/mnb.jpeg" alt="Black Gold Potting Mix 1.5 cu ft" />
+        <div class="product-title">Black Gold Potting Mix 1.5 cu ft</div>
+        <div class="product-desc">Slow release complete fertilizer is added to give plants a strong start Made with Canadian sphagnum peat moss with worm castings Multi purpose nutrient rich mix thats ideal for all plants</div>
+        <div class="product-price">$12.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <img src="assets/img/zxcvb.jpeg" alt="Black Gold Potting Soil with Fertilizer 8qt" />
+        <div class="product-title">Black Gold Potting Soil with Fertilizer 8qt</div>
+        <div class="product-desc">Slow release complete fertilizer is added to give plants a strong start Made with Canadian sphagnum peat moss with worm castings Multi purpose nutrient rich mix thats ideal for all plants</div>
+        <div class="product-price">$6.99</div>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</div>
+
+<div id="no-results">No products found. Try another search.</div>
+<div class="footer">© Hemlocks Farm & Garden 2025</div>
+
+<script>
+    // Load cart from localStorage or initialize
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Update cart count
+    function updateCartCount() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById("cart-count").textContent = count;
+    }
+
+    // Add item to cart and alert the user
+    function addToCart(name, price) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity++;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        alert(`${name} has been added to the cart.`);
+    }
+
+    // Live search filter + "No results" message
+    const searchInput = document.getElementById("search");
+    const noResults = document.getElementById("no-results");
+    const productGrid = document.querySelector(".product-grid");
+
+    searchInput.addEventListener("input", function() {
+        let filter = this.value.toLowerCase();
+        let products = document.querySelectorAll(".product-card");
+        let visibleCount = 0;
+
+        products.forEach(card => {
+            let text = card.innerText.toLowerCase();
+            if (text.includes(filter)) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    // Add event listeners to all "Add to Cart" buttons
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".add-to-cart");
+        buttons.forEach(button => {
+            button.addEventListener("click", (event) => {
+                const productCard = event.target.closest('.product-card');
+                const name = productCard.querySelector('.product-title').innerText.trim();
+                const priceText = productCard.querySelector('.product-price').innerText;
+                const price = parseFloat(priceText.replace('$', ''));
+                addToCart(name, price);
+            });
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+    });
+</script>
+
+</body>
+</html>
